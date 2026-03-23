@@ -1,11 +1,53 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
+type ActiveProject = {
+  id: number;
+  name: string;
+  tag: string;
+  desc: string;
+  category: string;
+  youtubeId?: string;
+};
 
 export default function ProjectsSection() {
   const { t } = useLanguage();
+  const router = useRouter();
+  const [selectedCategory, setSelectedCategory] = useState('uzMade');
+
+  const categories = [
+    { id: 'uzMade', icon: 'play_circle', label: 'Uz Made' },
+    {
+      id: 'startups',
+      icon: 'rocket_launch',
+      label: t.sections.projects.categories?.startups || 'Youth Startups',
+    },
+    {
+      id: 'social',
+      icon: 'diversity_3',
+      label: t.sections.projects.categories?.social || 'Social Projects',
+    },
+    {
+      id: 'scientific',
+      icon: 'biotech',
+      label: t.sections.projects.categories?.scientific || 'Scientific Support',
+    },
+  ];
+
+  const filteredActiveProjects = (t.activeProjectsData as ActiveProject[])
+    .filter((project) => project.category === selectedCategory)
+    .slice(0, 2);
+
+  const fallbackByCategory: Record<string, string> = {
+    uzMade: '/images/projects/projects_cover.png',
+    startups: '/images/gallery/education.png',
+    social: '/images/gallery/meeting.png',
+    scientific: '/images/gallery/culture.png',
+  };
 
   return (
     <div className="w-full">
@@ -23,10 +65,7 @@ export default function ProjectsSection() {
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 z-10"></div>
             <div className="relative z-20 flex flex-col items-center text-center max-w-3xl mx-auto gap-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-xs font-bold uppercase tracking-wider">
-                <span className="size-2 rounded-full bg-accent animate-pulse"></span>
-                {t.sections.projects.badge}
-              </div>
+               
               <h1 className="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight">
                 {t.sections.projects.title}
               </h1>
@@ -57,20 +96,36 @@ export default function ProjectsSection() {
             {/* Sidebar */}
             <aside className="lg:col-span-3 lg:sticky lg:top-24 static">
               <div className="bg-surface-light dark:bg-surface-dark rounded-xl border border-gray-100 dark:border-gray-800 p-4 shadow-sm">
-                <h3 className="text-xs font-extrabold text-text-muted dark:text-gray-500 uppercase tracking-widest mb-4 px-2">Categories</h3>
+                <h3 className="text-xs font-extrabold text-text-muted dark:text-gray-500 uppercase tracking-widest mb-4 px-2">
+                  {t.sections.projects.categoriesTitle || 'Categories'}
+                </h3>
                 <nav className="space-y-1">
-                  <Link href="/projects" className="group flex items-center gap-3 px-3 py-3 text-sm font-medium rounded-lg text-text-main dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary transition-all">
-                    <span className="material-symbols-outlined text-gray-400 group-hover:text-primary text-[20px]">diversity_3</span>
-                    {t.sections.projects.categories.social}
-                  </Link>
-                  <Link href="/projects" className="group flex items-center gap-3 px-3 py-3 text-sm font-medium rounded-lg text-text-main dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary transition-all">
-                    <span className="material-symbols-outlined text-gray-400 group-hover:text-primary text-[20px]">biotech</span>
-                    {t.sections.projects.categories.scientific}
-                  </Link>
-                  <Link href="/projects" className="flex items-center gap-3 px-3 py-3 text-sm font-bold rounded-lg bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-300">
-                    <span className="material-symbols-outlined text-primary text-[20px]">rocket_launch</span>
-                    {t.sections.projects.categories.startups}
-                  </Link>
+                  {categories.map((cat) => (
+                    <button
+                      key={cat.id}
+                      type="button"
+                      onClick={() => {
+                        setSelectedCategory(cat.id);
+                        router.push(`/projects?category=${cat.id}`);
+                      }}
+                      className={`w-full flex items-center gap-3 px-3 py-3 text-sm rounded-lg transition-all text-left ${
+                        selectedCategory === cat.id
+                          ? 'bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-300 font-bold'
+                          : 'text-text-main dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary font-medium'
+                      }`}
+                    >
+                      <span
+                        className={`material-symbols-outlined text-[20px] ${
+                          selectedCategory === cat.id
+                            ? 'text-primary'
+                            : 'text-gray-400'
+                        }`}
+                      >
+                        {cat.icon}
+                      </span>
+                      {cat.label}
+                    </button>
+                  ))}
                 </nav>
               </div>
             </aside>
@@ -117,60 +172,59 @@ export default function ProjectsSection() {
                   </Link>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Startup Card 1 */}
-                  <div className="group flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
-                    <div className="h-48 overflow-hidden relative">
-                      <div className="absolute top-3 left-3 z-10 bg-white/90 dark:bg-black/80 backdrop-blur px-2 py-1 rounded text-xs font-bold text-text-main dark:text-white flex items-center gap-1">
-                        <span className="size-2 rounded-full bg-green-500"></span> {t.sections.projects.active}
+                  {filteredActiveProjects.map((project) => (
+                    <div
+                      key={project.id}
+                      className="group flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1"
+                    >
+                      <div className="h-48 overflow-hidden relative">
+                        <div className="absolute top-3 left-3 z-10 bg-white/90 dark:bg-black/80 backdrop-blur px-2 py-1 rounded text-xs font-bold text-text-main dark:text-white flex items-center gap-1">
+                          <span className="size-2 rounded-full bg-green-500"></span> {t.sections.projects.active}
+                        </div>
+                        {project.youtubeId ? (
+                          <div className="relative w-full h-full">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={`https://img.youtube.com/vi/${project.youtubeId}/hqdefault.jpg`}
+                              alt={project.name}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          </div>
+                        ) : (
+                          <div className="relative w-full h-full">
+                            <Image
+                              src={fallbackByCategory[project.category] || '/images/projects/projects_cover.png'}
+                              alt={project.name}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                              className="object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                          </div>
+                        )}
                       </div>
-                      <div className="w-full h-full relative">
-                        <Image 
-                           alt="Agricultural drone" 
-                           className="object-cover transition-transform duration-500 group-hover:scale-110" 
-                           src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgiTsE_W0bnVyIFeXO6I2c1I-Buj56CLS_BUriGlXHUWPihS0NEXmeiJL0PzyS1uipP1GlxW5TIrAJEFwHI7qKlgKW5ktm2g37_IAf1jw1eHGUon9n2wspjKMq1mFmjF1TNvlug0k0bXUqug8TnnXRp_MPvqFw1yTdySnywQI3qwP45m1UQZkURUdL26UkemDnq_H6m4rZm97A0GNxoo3chvsZ3YxhFkPn6F5hdHA43fZBvZaA3AvyBu3e8Q5WA51s7wr8KurQj9s"
-                           fill
-                           sizes="(max-width: 768px) 100vw, 50vw"
-                        />
+                      <div className="p-5 flex-1 flex flex-col">
+                        <div className="flex items-center gap-2 mb-2 text-xs font-bold text-accent uppercase tracking-wider">
+                          <span>{project.tag}</span>
+                        </div>
+                        <h4 className="text-xl font-bold text-text-main dark:text-white mb-2">
+                          {project.name}
+                        </h4>
+                        <p className="text-text-muted dark:text-gray-400 text-sm mb-4 line-clamp-3">
+                          {project.desc}
+                        </p>
+                        <Link href={`/projects/${project.id}`} className="mt-auto text-primary font-bold text-sm hover:underline">
+                          {t.sections.projects.viewProfile}
+                        </Link>
                       </div>
                     </div>
-                    <div className="p-5 flex-1 flex flex-col">
-                      <div className="flex items-center gap-2 mb-2 text-xs font-bold text-accent uppercase tracking-wider">
-                        <span>AgriTech</span>
-                      </div>
-                      <h4 className="text-xl font-bold text-text-main dark:text-white mb-2">AgroSmart Systems</h4>
-                      <p className="text-text-muted dark:text-gray-400 text-sm mb-4 line-clamp-3">
-                        Developing AI-driven drone solutions for precision agriculture in the Samarkand region to optimize water usage.
-                      </p>
-                      <Link href="/projects/1" className="mt-auto text-primary font-bold text-sm hover:underline">{t.sections.projects.viewProfile}</Link>
+                  ))}
+
+                  {filteredActiveProjects.length === 0 && (
+                    <div className="md:col-span-2 rounded-xl border border-dashed border-gray-300 dark:border-gray-700 p-8 text-center text-text-muted dark:text-gray-400">
+                      No projects in this category yet.
                     </div>
-                  </div>
-                   {/* Startup Card 2 */}
-                   <div className="group flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
-                    <div className="h-48 overflow-hidden relative">
-                      <div className="absolute top-3 left-3 z-10 bg-white/90 dark:bg-black/80 backdrop-blur px-2 py-1 rounded text-xs font-bold text-text-main dark:text-white flex items-center gap-1">
-                        <span className="size-2 rounded-full bg-green-500"></span> {t.sections.projects.active}
-                      </div>
-                      <div className="w-full h-full relative">
-                        <Image 
-                          alt="Blockchain visualization" 
-                          className="object-cover transition-transform duration-500 group-hover:scale-110" 
-                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1-ho82VhHlhWjYWdhJdF6kvoJmcu9mYqBb2SBi6xf4tS6ZJyjm7qOrb2mVbkojKeehhr6QiU_8aCwHD8JdvY85UWTQoaA81PmLaQHADhsXKHRsvno_l2JSB4y89m79dxFdCE3CrXx0Gn-FedvKxH54mRdltOVQUEP6JLVHuB4CqOeyjOm8BxDppb67bvHFYP4rQqgy1JTWcP12puY-mZQWxC3EfF41kV2QxDVDK6bu2lBRSSEcGSdxpuArYYQYWO_Bb4oIz-v_kU"
-                          fill
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                      </div>
-                    </div>
-                    <div className="p-5 flex-1 flex flex-col">
-                      <div className="flex items-center gap-2 mb-2 text-xs font-bold text-accent uppercase tracking-wider">
-                        <span>FinTech</span>
-                      </div>
-                      <h4 className="text-xl font-bold text-text-main dark:text-white mb-2">SilkRoad Chain</h4>
-                      <p className="text-text-muted dark:text-gray-400 text-sm mb-4 line-clamp-3">
-                        Blockchain-based logistics platform simplifying cross-border trade for small businesses in Central Asia.
-                      </p>
-                      <Link href="/projects/2" className="mt-auto text-primary font-bold text-sm hover:underline">{t.sections.projects.viewProfile}</Link>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>

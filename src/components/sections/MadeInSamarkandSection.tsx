@@ -1,26 +1,32 @@
 "use client";
-import React from 'react';
-import { useLanguage } from '@/context/LanguageContext';
+import React from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function MadeInSamarkandSection() {
   const { t } = useLanguage();
+  const mis = t.sections.madeInSamarkand;
 
   return (
-    <section className="py-20 px-4 bg-primary text-white relative overflow-hidden">
-      <div className="absolute inset-0 z-0 opacity-20" style={{ backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.5) 2px, transparent 2px)', backgroundSize: '30px 30px' }}></div>
-      <div className="max-w-[1280px] mx-auto relative z-10 text-center">
-        <h2 className="text-4xl md:text-5xl font-black mb-6">Made in Samarkand</h2>
-        <p className="text-xl text-white/80 max-w-2xl mx-auto mb-10">
-          Discover the industrial potential of our region. Browse the electronic catalog of products manufactured in Samarkand.
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-accent/10 via-primary/5 to-accent/10 dark:from-accent/5 dark:via-primary/5 dark:to-accent/5  border-y border-gray-100 dark:border-gray-800">
+      <div className="max-w-7xl mx-auto text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-wider mb-6">
+          <span className="material-symbols-outlined text-sm">factory</span>
+          {mis.title}
+        </div>
+        <h2 className="text-3xl md:text-4xl font-black text-text-main dark:text-white mb-6">
+          {mis.title}
+        </h2>
+        <p className="text-text-muted dark:text-gray-400 text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+          {mis.subtitle}
         </p>
-        <a 
-          href="https://madeinsamarkand.uz" 
-          target="_blank" 
+        <a
+          href="https://madeinsamarkand.uz"
+          target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-accent-gold hover:text-white transition-all shadow-lg hover:shadow-xl"
+          className="inline-flex items-center gap-2 h-12 px-8 rounded-lg bg-primary hover:bg-primary-dark text-white text-base font-bold transition-all shadow-lg hover:translate-y-[-2px]"
         >
-          Open Catalog
-          <span className="material-symbols-outlined">open_in_new</span>
+          {mis.button}{" "}
+          <span className="material-symbols-outlined text-lg">open_in_new</span>
         </a>
       </div>
     </section>

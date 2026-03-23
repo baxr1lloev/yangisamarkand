@@ -1,26 +1,28 @@
-import React from 'react';
+import React from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: "primary" | "secondary" | "outline";
   children: React.ReactNode;
 }
 
-export default function Button({ 
-  variant = 'primary', 
-  children, 
-  className = '', 
-  ...props 
+export default function Button({
+  variant = "primary",
+  children,
+  className = "",
+  ...props
 }: ButtonProps) {
-  const baseStyles = "px-6 py-2.5 rounded-md font-medium transition-all duration-200 flex items-center justify-center";
-  
+  const baseStyles =
+    "px-6 py-2.5 rounded-md font-medium transition-all duration-200 flex items-center justify-center";
+
   const variants = {
-    primary: "bg-blue-900 text-white hover:bg-blue-800 shadow-md",
-    secondary: "bg-yellow-600 text-white hover:bg-yellow-500 shadow-md",
-    outline: "border-2 border-blue-900 text-blue-900 hover:bg-blue-50"
+    primary: "bg-primary text-white hover:bg-primary-dark shadow-md",
+    secondary: "bg-accent text-white hover:bg-accent-gold/90 shadow-md",
+    outline:
+      "border-2 border-primary text-primary hover:bg-primary/5 dark:text-primary-light dark:border-primary-light",
   };
 
   return (
-    <button 
+    <button
       className={`${baseStyles} ${variants[variant]} ${className}`}
       {...props}
     >
