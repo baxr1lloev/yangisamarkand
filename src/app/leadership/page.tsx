@@ -1,25 +1,71 @@
-import React from 'react';
-import SectionHeading from '@/components/ui/SectionHeading';
-import Card from '@/components/ui/Card';
+"use client";
+import React from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import {
+  boardMembers,
+  boardRoleLabels,
+  leadershipPageCopy,
+} from "@/lib/board-members";
 
 export default function LeadershipPage() {
+  const { language } = useLanguage();
+  const copy = leadershipPageCopy[language];
+
   return (
-    <div className="container mx-auto px-4 py-20">
-      <SectionHeading title="Our Leadership" subtitle="Meet the Team" center />
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-        {[1, 2, 3].map((i) => (
-          <Card key={i} className="text-center p-8">
-            <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl">
-              👤
-            </div>
-            <h3 className="text-xl font-bold text-gray-900">Leader Name {i}</h3>
-            <p className="text-blue-900 font-medium mb-4">Position Title</p>
-            <p className="text-gray-600 text-sm">
-              Brief bio description goes here. Dedicated to the development of Samarkand.
-            </p>
-          </Card>
-        ))}
+    <div className="bg-background-light dark:bg-background-dark min-h-screen py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <header className="text-center mb-10">
+          <p className="text-sm md:text-lg font-bold text-text-main dark:text-white leading-snug max-w-5xl mx-auto">
+            {copy.organizationName}
+          </p>
+          <h1 className="text-3xl md:text-5xl font-black text-text-main dark:text-white mt-6">
+            {copy.boardTitle}
+          </h1>
+        </header>
+
+        <section className="bg-white dark:bg-card-dark border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-sm">
+          <div className="overflow-x-auto">
+            <table className="min-w-[960px] w-full">
+              <thead className="bg-gray-50 dark:bg-surface-dark">
+                <tr>
+                  <th className="text-left p-4 text-xs md:text-sm font-bold uppercase tracking-wide text-text-main dark:text-white w-16">
+                    {copy.columns.index}
+                  </th>
+                  <th className="text-left p-4 text-xs md:text-sm font-bold uppercase tracking-wide text-text-main dark:text-white">
+                    {copy.columns.memberName}
+                  </th>
+                  <th className="text-left p-4 text-xs md:text-sm font-bold uppercase tracking-wide text-text-main dark:text-white">
+                    {copy.columns.workplace}
+                  </th>
+                  <th className="text-left p-4 text-xs md:text-sm font-bold uppercase tracking-wide text-text-main dark:text-white">
+                    {copy.columns.boardPosition}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {boardMembers.map((member) => (
+                  <tr
+                    key={member.id}
+                    className="border-t border-gray-100 dark:border-gray-800"
+                  >
+                    <td className="p-4 text-lg font-bold text-text-main dark:text-white align-top">
+                      {member.id}
+                    </td>
+                    <td className="p-4 text-text-main dark:text-gray-200 font-semibold align-top">
+                      {member.name[language]}
+                    </td>
+                    <td className="p-4 text-text-muted dark:text-gray-400 align-top">
+                      {member.workplace[language]}
+                    </td>
+                    <td className="p-4 text-text-main dark:text-gray-300 font-semibold align-top">
+                      {boardRoleLabels[language][member.role]}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
       </div>
     </div>
   );
