@@ -1,22 +1,42 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
-import { use } from "react";
+import { useParams } from "next/navigation";
 
-export default function ProjectDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const resolvedParams = use(params);
+export default function ProjectDetailPage() {
+  const params = useParams();
+  const id = Number(params.id);
   const { t, language } = useLanguage();
-  const projectId = parseInt(resolvedParams.id);
 
-  const activeProjects = (t as any).activeProjectsData || [];
-  const project = activeProjects.find((p: any) => p.id === projectId);
+  const [project, setProject] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  if (!project) {
+  useEffect(() => {
+    if (id) {
+      fetch(`http://127.0.0.1:8000/api/projects/${id}/`)
+        .then(res => {
+          if (!res.ok) throw new Error("Not found");
+          return res.json();
+        })
+        .then(data => {
+          setProject(data);
+          setLoading(false);
+        })
+        .catch(err => {
+          console.error(err);
+          setError(true);
+          setLoading(false);
+        });
+    }
+  }, [id]);
+
+  if (loading) {
+    return <div className="min-h-screen bg-background-light dark:bg-background-dark flex items-center justify-center text-xl font-bold dark:text-white">Loading Project...</div>;
+  }
+
+  if (error || !project) {
     return (
       <div className="min-h-screen bg-background-light dark:bg-background-dark flex items-center justify-center">
         <div className="text-center">
@@ -35,9 +55,15 @@ export default function ProjectDetailPage({
   }
 
   return (
-    <div className="min-h-screen bg-background-light dark:bg-background-dark">
+    <div className="min-h-screen bg-background-light dark:bg-background-dark pb-20">
       {/* Hero */}
       <div className="relative bg-primary py-24 px-4 sm:px-6 lg:px-8">
+        {project.youtubeId && (
+          <div 
+             className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay"
+             style={{ backgroundImage: `url(https://img.youtube.com/vi/${project.youtubeId}/maxresdefault.jpg)` }}
+          ></div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/70 to-primary/50" />
         <div className="relative max-w-7xl mx-auto">
           <Link
@@ -48,8 +74,8 @@ export default function ProjectDetailPage({
             {t.sections.projects.backToProjects || "Back to Projects"}
           </Link>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-xs font-bold uppercase tracking-wider mb-4 ml-4">
-            <span className="size-2 rounded-full bg-green-500"></span>
-            {t.sections.projects.active || "Active"}
+            <span className={`size-2 rounded-full ${project.status === 'active' ? 'bg-green-500' : 'bg-gray-400'}`}></span>
+            {project.status === 'active' ? (t.sections.projects.active || "Active") : (t.sections.projects.completed || "Completed")}
           </div>
           <h1 className="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight mb-4">
             {project.name}
@@ -64,12 +90,28 @@ export default function ProjectDetailPage({
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-8">
+              
+              {project.youtubeId && (
+                <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-100 dark:border-gray-700">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={`https://www.youtube.com/embed/${project.youtubeId}`}
+                    title={project.name}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="absolute inset-0"
+                  ></iframe>
+                </div>
+              )}
+
               <div>
                 <h2 className="text-2xl font-bold text-text-main dark:text-white mb-6">
                   {t.sections.projects.aboutProject || "About This Project"}
                 </h2>
                 <div className="prose dark:prose-invert max-w-none">
-                  {project.fullDesc
+                  {(project.fullDesc || project.desc)
                     .split("\n\n")
                     .map((paragraph: string, index: number) => (
                       <p
@@ -121,9 +163,9 @@ export default function ProjectDetailPage({
                     <span className="text-text-muted dark:text-gray-400">
                       Status
                     </span>
-                    <span className="text-green-600 dark:text-green-400 font-bold flex items-center gap-1">
-                      <span className="size-2 rounded-full bg-green-500"></span>
-                      {t.sections.projects.active || "Active"}
+                    <span className={`font-bold flex items-center gap-1 ${project.status === 'active' ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'}`}>
+                      <span className={`size-2 rounded-full ${project.status === 'active' ? 'bg-green-500' : 'bg-gray-400'}`}></span>
+                      {project.status === 'active' ? (t.sections.projects.active || "Active") : (t.sections.projects.completed || "Completed")}
                     </span>
                   </div>
                 </div>

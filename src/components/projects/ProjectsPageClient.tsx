@@ -6,58 +6,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 
-// Completed projects data
-const completedProjectsData = [
-  {
-    id: 101,
-    category: "social",
-    name: {
-      en: "Community Health Initiative",
-      ru: "Инициатива общественного здоровья",
-      uz: "Jamoat sog'liqni saqlash tashabbusi",
-    },
-    tag: { en: "Healthcare", ru: "Здравоохранение", uz: "Sog'liqni saqlash" },
-    desc: {
-      en: "Free medical checkups and health education for underserved communities across rural Samarkand.",
-      ru: "Бесплатные медицинские осмотры и санитарное просвещение для малообеспеченных сообществ сельского Самарканда.",
-      uz: "Samarqand qishloqlarining kam ta'minlangan jamoalari uchun bepul tibbiy tekshiruvlar.",
-    },
-    image: "/images/gallery/meeting.png",
-  },
-  {
-    id: 102,
-    category: "scientific",
-    name: {
-      en: "Silk Road Heritage Study",
-      ru: "Исследование наследия Шёлкового пути",
-      uz: "Ipak Yo'li merosi tadqiqoti",
-    },
-    tag: { en: "Research", ru: "Исследование", uz: "Tadqiqot" },
-    desc: {
-      en: "Archaeological research project documenting and preserving ancient trade route artifacts.",
-      ru: "Археологический исследовательский проект по документированию и сохранению древних артефактов торговых путей.",
-      uz: "Qadimiy savdo yo'llari artefaktlarini hujjatlashtirish va saqlash bo'yicha arxeologik tadqiqot loyihasi.",
-    },
-    image: "/images/gallery/culture.png",
-  },
-  {
-    id: 103,
-    category: "startups",
-    name: {
-      en: "Youth Education Program",
-      ru: "Программа обучения молодёжи",
-      uz: "Yoshlar ta'lim dasturi",
-    },
-    tag: { en: "Education", ru: "Образование", uz: "Ta'lim" },
-    desc: {
-      en: "Free coding and digital literacy workshops for students from low-income families.",
-      ru: "Бесплатные семинары по программированию и цифровой грамотности для студентов из малообеспеченных семей.",
-      uz: "Kam ta'minlangan oilalar talabalari uchun bepul dasturlash va raqamli savodxonlik seminarlari.",
-    },
-    image: "/images/gallery/education.png",
-  },
-];
-
+// Completed projects data removed as we use API
 export default function ProjectsPageClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -99,15 +48,29 @@ export default function ProjectsPageClient() {
     },
   ];
 
-  // Active projects come from dictionaries (real data from improvement docs)
-  type ActiveProject = { id: number; name: string; tag: string; desc: string; category: string; youtubeId?: string };
-  const activeProjects = ((t as Record<string, unknown>).activeProjectsData as ActiveProject[]) || [];
-  const filteredActiveProjects = activeProjects.filter(
-    (p) => p.category === selectedCategory,
+  type ProjectData = { id: number; name: string; tag: string; desc: string; category: string; status: string; youtube_id?: string };
+  const [allProjects, setAllProjects] = useState<ProjectData[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  React.useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/projects/')
+      .then(res => res.json())
+      .then(data => {
+        setAllProjects(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
+
+  const filteredActiveProjects = allProjects.filter(
+    (p) => p.category === selectedCategory && p.status === 'active',
   );
 
-  const filteredCompletedProjects = completedProjectsData.filter(
-    (p) => p.category === selectedCategory,
+  const filteredCompletedProjects = allProjects.filter(
+    (p) => p.category === selectedCategory && p.status === 'completed',
   );
 
   return (
@@ -225,7 +188,7 @@ export default function ProjectsPageClient() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <AnimatePresence mode="wait">
                     {activeTab === "active"
-                      ? filteredActiveProjects.map((project: {id: number; name: string; tag: string; desc: string; youtubeId?: string}) => (
+                      ? filteredActiveProjects.map((project: {id: number; name: string; tag: string; desc: string; youtube_id?: string}) => (
                           <motion.div
                             key={project.id}
                             initial={{ opacity: 0, y: 20 }}
@@ -235,14 +198,14 @@ export default function ProjectsPageClient() {
                             className="group flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1"
                           >
                             {/* YouTube thumbnail for uzMade projects */}
-                            {project.youtubeId && (
+                            {project.youtube_id && (
                               <div
                                 className="relative w-full aspect-video cursor-pointer overflow-hidden"
-                                onClick={() => setLightboxVideo(project.youtubeId!)}
+                                onClick={() => setLightboxVideo(project.youtube_id!)}
                               >
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
-                                  src={`https://img.youtube.com/vi/${project.youtubeId}/hqdefault.jpg`}
+                                  src={`https://img.youtube.com/vi/${project.youtube_id}/hqdefault.jpg`}
                                   alt={project.name}
                                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
@@ -273,9 +236,9 @@ export default function ProjectsPageClient() {
                               <p className="text-text-muted dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-1">
                                 {project.desc}
                               </p>
-                              {project.youtubeId ? (
+                              {project.youtube_id ? (
                                 <button
-                                  onClick={() => setLightboxVideo(project.youtubeId!)}
+                                  onClick={() => setLightboxVideo(project.youtube_id!)}
                                   className="mt-auto text-red-600 dark:text-red-400 font-bold text-sm hover:underline flex items-center gap-1"
                                 >
                                   <span className="material-symbols-outlined text-base">play_circle</span>
@@ -301,28 +264,61 @@ export default function ProjectsPageClient() {
                             transition={{ duration: 0.3 }}
                             className="group flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1"
                           >
-                            <div className="h-48 overflow-hidden relative">
-                              <div className="absolute top-3 left-3 z-10 bg-white/90 dark:bg-black/80 backdrop-blur px-2 py-1 rounded text-xs font-bold text-text-main dark:text-white flex items-center gap-1">
-                                <span className="size-2 rounded-full bg-gray-400"></span>
-                                {t.sections.projects.completed || "Completed"}
+                            {/* YouTube thumbnail for completed projects */}
+                            {project.youtube_id && (
+                              <div
+                                className="relative w-full aspect-video cursor-pointer overflow-hidden"
+                                onClick={() => setLightboxVideo(project.youtube_id!)}
+                              >
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                  src={`https://img.youtube.com/vi/${project.youtube_id}/hqdefault.jpg`}
+                                  alt={project.name}
+                                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                  <div className="w-14 h-14 rounded-full bg-red-600 flex items-center justify-center shadow-lg">
+                                    <span className="material-symbols-outlined text-white text-3xl">play_arrow</span>
+                                  </div>
+                                </div>
+                                <div className="absolute top-2 left-2 bg-gray-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1">
+                                  <span className="material-symbols-outlined text-[12px]">check_circle</span>
+                                  {t.sections.projects.completed || "Completed"}
+                                </div>
                               </div>
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img
-                                alt={project.name[language]}
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                src={project.image}
-                              />
-                            </div>
-                            <div className="p-5 flex-1 flex flex-col">
+                            )}
+                            <div className="p-6 flex-1 flex flex-col">
+                              <div className="flex items-center gap-2 mb-3">
+                                <span className="size-2 rounded-full bg-gray-500"></span>
+                                <span className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                                  {t.sections.projects.completed || "Completed"}
+                                </span>
+                              </div>
                               <div className="flex items-center gap-2 mb-2 text-xs font-bold text-accent uppercase tracking-wider">
-                                <span>{project.tag[language]}</span>
+                                <span>{project.tag}</span>
                               </div>
-                              <h4 className="text-xl font-bold text-text-main dark:text-white mb-2">
-                                {project.name[language]}
+                              <h4 className="text-xl font-bold text-text-main dark:text-white mb-3">
+                                {project.name}
                               </h4>
-                              <p className="text-text-muted dark:text-gray-400 text-sm mb-4 line-clamp-3">
-                                {project.desc[language]}
+                              <p className="text-text-muted dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-1">
+                                {project.desc}
                               </p>
+                              {project.youtube_id ? (
+                                <button
+                                  onClick={() => setLightboxVideo(project.youtube_id!)}
+                                  className="mt-auto text-red-600 dark:text-red-400 font-bold text-sm hover:underline flex items-center gap-1"
+                                >
+                                  <span className="material-symbols-outlined text-base">play_circle</span>
+                                  Watch Video
+                                </button>
+                              ) : (
+                                <Link
+                                  href={`/projects/${project.id}`}
+                                  className="mt-auto text-primary font-bold text-sm hover:underline"
+                                >
+                                  {t.sections.projects.viewProfile || "View Profile"}
+                                </Link>
+                              )}
                             </div>
                           </motion.div>
                         ))}

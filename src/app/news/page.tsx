@@ -4,89 +4,30 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Mock Data
-const allNews = [
-  {
-    id: 1,
-    title: 'International Business Forum 2024 Held in Samarkand',
-    date: 'May 15, 2024',
-    category: 'Events',
-    image: '/images/news/news_1.png',
-    desc: 'Delegates from over 30 countries gathered to discuss investment opportunities and sustainable development goals for the region.'
-  },
-  {
-    id: 2,
-    title: 'New Grant Program Announced for Local Entrepreneurs',
-    date: 'May 10, 2024',
-    category: 'Grants',
-    image: '/images/news/news_2.png',
-    desc: 'Small and medium enterprises can now apply for funding to support export-oriented production and job creation initiatives.'
-  },
-  {
-    id: 3,
-    title: 'Partnership Agreement Signed with Tech Park',
-    date: 'May 05, 2024',
-    category: 'Partnerships',
-    image: '/images/news/news_3.png',
-    desc: 'A strategic alliance to boost the local startup ecosystem through mentorship, infrastructure sharing, and joint acceleration programs.'
-  },
-  {
-    id: 4,
-    title: 'Silk Road Tourism Festival Dates Announced',
-    date: 'April 28, 2024',
-    category: 'Events',
-    image: '/images/gallery/culture.png',
-    desc: 'The annual celebration of culture and heritage will take place next month, featuring artists from across the globe.'
-  },
-  {
-    id: 5,
-    title: 'Youth Coding Bootcamp Graduates First Cohort',
-    date: 'April 20, 2024',
-    category: 'Education',
-    image: '/images/gallery/education.png',
-    desc: 'Fifty young developers presented their final projects, ranging from agricultural tech solutions to educational apps.'
-  },
-  {
-    id: 6,
-    title: 'Sustainable Urban Planning Workshop',
-    date: 'April 15, 2024',
-    category: 'Events',
-    image: '/images/gallery/meeting.png',
-    desc: 'City planners and international experts discussed the future of Samarkand\'s urban landscape and green spaces.'
-  },
-  {
-    id: 7,
-    title: 'Women in Business Summit 2024',
-    date: 'March 30, 2024',
-    category: 'Events',
-    image: '/images/gallery/meeting.png',
-    desc: 'Empowering female entrepreneurs through networking, mentorship, and access to capital resources.'
-  },
-  {
-    id: 8,
-    title: 'New Educational Grants for STEM Students',
-    date: 'March 25, 2024',
-    category: 'Grants',
-    image: '/images/gallery/education.png',
-    desc: 'Scholarships covering full tuition are now available for students pursuing degrees in science and technology.'
-  },
-  {
-    id: 9,
-    title: 'Cultural Heritage Preservation Fund Launched',
-    date: 'March 10, 2024',
-    category: 'Partnerships',
-    image: '/images/gallery/culture.png',
-    desc: 'A new initiative in collaboration with UNESCO to restore and maintain historical sites across the region.'
-  }
-];
-
 const ITEMS_PER_PAGE = 3;
 
 export default function NewsPage() {
   const [filter, setFilter] = useState('All News');
   const [currentPage, setCurrentPage] = useState(1);
+  const [allNews, setAllNews] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  React.useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/news/')
+      .then(res => res.json())
+      .then(data => {
+        setAllNews(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Error fetching news:", err);
+        setLoading(false);
+      });
+  }, []);
 
   // Filter Logic
+  const uniqueCategories = ['All News', ...Array.from(new Set(allNews.map(item => item.category)))].filter(Boolean);
+  
   const filteredNews = filter === 'All News' 
     ? allNews 
     : allNews.filter(item => item.category === filter);
@@ -106,13 +47,17 @@ export default function NewsPage() {
     setCurrentPage(1); // Reset to page 1 on filter change
   };
 
+  if (loading) {
+    return <div className="container mx-auto px-4 py-32 text-center text-xl dark:text-white mt-10">Loading News...</div>;
+  }
+
   return (
     <div className="container mx-auto px-4 py-32 bg-background-light dark:bg-background-dark min-h-screen">
       <SectionHeading title="News & Updates" subtitle="Latest Happenings in Samarkand" center />
       
       {/* Filters */}
       <div className="flex justify-center gap-4 mt-8 mb-12 flex-wrap">
-        {['All News', 'Events', 'Grants', 'Partnerships'].map((cat) => (
+        {uniqueCategories.map((cat) => (
           <button 
             key={cat}
             onClick={() => handleFilterChange(cat)}
@@ -155,7 +100,7 @@ export default function NewsPage() {
                      {item.title}
                    </h3>
                    <p className="text-text-muted dark:text-gray-400 text-sm line-clamp-3 mb-6 flex-1">
-                     {item.desc}
+                     {item.description}
                    </p>
                    <div className="text-primary font-bold text-sm flex items-center group-hover:gap-2 transition-all">
                      Read Article <span className="material-symbols-outlined text-lg ml-1">arrow_forward</span>
