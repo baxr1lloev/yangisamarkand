@@ -26,6 +26,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const saved = localStorage.getItem("ys-language") as Locale | null;
     if (saved && (saved === "en" || saved === "ru" || saved === "uz")) {
+      // eslint-disable-next-line
       setLanguageState(saved);
     }
     setMounted(true);

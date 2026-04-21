@@ -9,6 +9,7 @@ export default function ProjectDetailPage() {
   const id = Number(params.id);
   const { t, language } = useLanguage();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [project, setProject] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);

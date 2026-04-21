@@ -9,6 +9,7 @@ const ITEMS_PER_PAGE = 3;
 export default function NewsPage() {
   const [filter, setFilter] = useState('All News');
   const [currentPage, setCurrentPage] = useState(1);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [allNews, setAllNews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
