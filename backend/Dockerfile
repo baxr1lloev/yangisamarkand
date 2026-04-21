@@ -13,4 +13,4 @@ COPY . /app
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn core.wsgi:application --bind 0.0.0.0:${PORT:-8080} --workers 2 --timeout 120"]
+CMD ["sh", "-c", "exec gunicorn core.wsgi:application --bind 0.0.0.0:${PORT:-8080} --workers ${WEB_CONCURRENCY:-1} --timeout 120"]
