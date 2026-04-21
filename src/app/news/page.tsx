@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import { buildApiUrl } from '@/lib/api';
 
 const ITEMS_PER_PAGE = 3;
 
@@ -14,7 +15,7 @@ export default function NewsPage() {
   const [loading, setLoading] = useState(true);
 
   React.useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/news/')
+    fetch(buildApiUrl('/api/news/'))
       .then(res => res.json())
       .then(data => {
         setAllNews(data);

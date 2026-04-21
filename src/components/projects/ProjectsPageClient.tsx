@@ -5,6 +5,7 @@ import ProjectsMapHero from "@/components/projects/ProjectsMapHero";
 import { useLanguage } from "@/context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
+import { buildApiUrl } from "@/lib/api";
 
 // Completed projects data removed as we use API
 export default function ProjectsPageClient() {
@@ -53,7 +54,7 @@ export default function ProjectsPageClient() {
   const [loading, setLoading] = useState(true);
 
   React.useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/projects/')
+    fetch(buildApiUrl("/api/projects/"))
       .then(res => res.json())
       .then(data => {
         setAllProjects(data);

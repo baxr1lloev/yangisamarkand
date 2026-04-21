@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { buildApiUrl } from '@/lib/api';
 
 export default function NewsDetailPage() {
   const params = useParams();
@@ -14,7 +15,7 @@ export default function NewsDetailPage() {
 
   useEffect(() => {
     if (id) {
-      fetch(`http://127.0.0.1:8000/api/news/${id}/`)
+      fetch(buildApiUrl(`/api/news/${id}/`))
         .then(res => {
           if (!res.ok) throw new Error("Not found");
           return res.json();

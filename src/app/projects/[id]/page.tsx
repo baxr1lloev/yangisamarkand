@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import { useParams } from "next/navigation";
+import { buildApiUrl } from "@/lib/api";
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -16,7 +17,7 @@ export default function ProjectDetailPage() {
 
   useEffect(() => {
     if (id) {
-      fetch(`http://127.0.0.1:8000/api/projects/${id}/`)
+      fetch(buildApiUrl(`/api/projects/${id}/`))
         .then(res => {
           if (!res.ok) throw new Error("Not found");
           return res.json();
