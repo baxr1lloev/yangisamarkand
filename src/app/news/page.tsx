@@ -99,9 +99,10 @@ export default function NewsPage() {
                    <h3 className="text-xl font-bold text-text-main dark:text-white mb-3 group-hover:text-primary transition-colors line-clamp-2">
                      {item.title}
                    </h3>
-                   <p className="text-text-muted dark:text-gray-400 text-sm line-clamp-3 mb-6 flex-1">
-                     {item.description}
-                   </p>
+                   <div 
+                     className="text-text-muted dark:text-gray-400 text-sm line-clamp-3 mb-6 flex-1 ckeditor-content prose-p:mb-0"
+                     dangerouslySetInnerHTML={{ __html: item.description }}
+                   />
                    <div className="text-primary font-bold text-sm flex items-center group-hover:gap-2 transition-all">
                      Read Article <span className="material-symbols-outlined text-lg ml-1">arrow_forward</span>
                    </div>

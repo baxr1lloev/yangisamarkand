@@ -80,7 +80,10 @@ export default function ProjectDetailPage() {
           <h1 className="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight mb-4">
             {project.name}
           </h1>
-          <p className="text-white/80 text-lg mt-4 max-w-2xl">{project.desc}</p>
+          <div 
+            className="text-white/80 text-lg mt-4 max-w-2xl ckeditor-content prose-invert prose-p:mb-0" 
+            dangerouslySetInnerHTML={{ __html: project.desc }} 
+          />
         </div>
       </div>
 
@@ -110,18 +113,10 @@ export default function ProjectDetailPage() {
                 <h2 className="text-2xl font-bold text-text-main dark:text-white mb-6">
                   {t.sections.projects.aboutProject || "About This Project"}
                 </h2>
-                <div className="prose dark:prose-invert max-w-none">
-                  {(project.fullDesc || project.desc)
-                    .split("\n\n")
-                    .map((paragraph: string, index: number) => (
-                      <p
-                        key={index}
-                        className="text-text-muted dark:text-gray-400 text-lg leading-relaxed mb-4"
-                      >
-                        {paragraph}
-                      </p>
-                    ))}
-                </div>
+                <div 
+                  className="prose dark:prose-invert max-w-none text-text-muted dark:text-gray-400 text-lg leading-relaxed mb-4 ckeditor-content"
+                  dangerouslySetInnerHTML={{ __html: project.fullDesc || project.desc }}
+                />
               </div>
 
               {project.expectedResults && (
@@ -136,9 +131,10 @@ export default function ProjectDetailPage() {
                         ? "Kutilayotgan natijalar"
                         : "Expected Results"}
                   </h3>
-                  <p className="text-green-700 dark:text-green-400 leading-relaxed">
-                    {project.expectedResults}
-                  </p>
+                  <div 
+                    className="text-green-700 dark:text-green-400 leading-relaxed ckeditor-content"
+                    dangerouslySetInnerHTML={{ __html: project.expectedResults }}
+                  />
                 </div>
               )}
             </div>

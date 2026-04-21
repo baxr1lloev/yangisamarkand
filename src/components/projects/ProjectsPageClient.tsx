@@ -233,9 +233,10 @@ export default function ProjectsPageClient() {
                               <h4 className="text-xl font-bold text-text-main dark:text-white mb-3">
                                 {project.name}
                               </h4>
-                              <p className="text-text-muted dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-1">
-                                {project.desc}
-                              </p>
+                              <div 
+                                className="text-text-muted dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-1 ckeditor-content"
+                                dangerouslySetInnerHTML={{ __html: project.desc }}
+                              />
                               {project.youtube_id ? (
                                 <button
                                   onClick={() => setLightboxVideo(project.youtube_id!)}
@@ -300,9 +301,10 @@ export default function ProjectsPageClient() {
                               <h4 className="text-xl font-bold text-text-main dark:text-white mb-3">
                                 {project.name}
                               </h4>
-                              <p className="text-text-muted dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-1">
-                                {project.desc}
-                              </p>
+                              <div 
+                                className="text-text-muted dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-1 ckeditor-content"
+                                dangerouslySetInnerHTML={{ __html: project.desc }}
+                              />
                               {project.youtube_id ? (
                                 <button
                                   onClick={() => setLightboxVideo(project.youtube_id!)}
