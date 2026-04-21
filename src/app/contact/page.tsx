@@ -15,8 +15,8 @@ export default function ContactPage() {
   };
 
   return (
+   
     <div className="bg-background-light dark:bg-background-dark min-h-screen">
-      {/* Hero */}
       <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary via-primary to-primary-dark text-white">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-black mb-6">

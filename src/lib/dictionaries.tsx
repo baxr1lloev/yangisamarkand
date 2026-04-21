@@ -270,7 +270,7 @@ export const dictionaries = {
       contact: {
         title: "Contact Us",
         subtitle: "Get in Touch",
-        sendMessage: "Send us a Message",
+        sendMessage: "Send us Message",
         form: {
           name: "Full Name",
           email: "Email Address",
