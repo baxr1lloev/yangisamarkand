@@ -10,6 +10,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r /app/requirements.txt
 
 COPY . /app
+RUN python manage.py collectstatic --noinput
 
 EXPOSE 8080
 
