@@ -25,6 +25,20 @@ if allowed_hosts_env == "*":
 else:
     ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_env.split(",") if host.strip()]
 
+csrf_trusted_origins_env = os.getenv(
+    "CSRF_TRUSTED_ORIGINS",
+    "https://*.run.app,https://*.vercel.app",
+)
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in csrf_trusted_origins_env.split(",")
+    if origin.strip()
+]
+
+# Cloud Run terminates TLS at the proxy, so Django must trust forwarded proto/host.
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+USE_X_FORWARDED_HOST = True
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
