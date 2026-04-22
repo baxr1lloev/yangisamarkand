@@ -14,6 +14,7 @@ import MagneticButton from "@/components/ui/MagneticButton";
 export default function ScrollVideoHero() {
   const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const videoRef = useRef<any>(null);
 
@@ -36,8 +37,8 @@ export default function ScrollVideoHero() {
   useMotionValueEvent(smoothProgress, "change", (latest: number) => {
     const video = videoRef.current;
     if (video && video.duration) {
-      // Start at 3s so both Registan blue domes are visible by default
-      const startOffset = 1.5;
+      // Start from beginning for the new video
+      const startOffset = 0;
       const targetTime = startOffset + latest * (video.duration - startOffset);
       if ("fastSeek" in video) {
         video.fastSeek(targetTime);
@@ -54,13 +55,13 @@ export default function ScrollVideoHero() {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover scale-105"
-          src="/images/hero/vd.mp4"
+          src="/images/hero/video_scrub.mp4"
           muted
           playsInline
           preload="auto"
           onLoadedMetadata={(e) => {
             const video = e.currentTarget;
-            video.currentTime = 2;
+            video.currentTime = 0;
           }}
         />
 

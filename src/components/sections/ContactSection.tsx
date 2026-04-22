@@ -33,135 +33,92 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Info + Map */}
-          <div className="space-y-6">
-            <div className="bg-surface-light dark:bg-surface-dark rounded-2xl p-6 border border-gray-100 dark:border-gray-800">
-              <h3 className="text-lg font-bold text-text-main dark:text-white mb-4">
-                {contact.info}
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <span className="material-symbols-outlined text-primary mt-1">
+        <div className="max-w-3xl mx-auto space-y-8">
+          {/* Contact Info */}
+          <div className="bg-surface-light dark:bg-surface-dark rounded-2xl p-8 border border-gray-100 dark:border-gray-800 shadow-lg">
+            <h3 className="text-xl font-bold text-text-main dark:text-white mb-6 text-center">
+              {contact.info}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <a
+                href="https://maps.google.com/?q=39.6542,66.9597"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center text-center gap-3 group cursor-pointer"
+              >
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <span className="material-symbols-outlined text-primary text-xl">
                     location_on
                   </span>
-                  <div>
-                    <p className="font-medium text-text-main dark:text-white">
-                      {contact.office}
-                    </p>
-                    <p className="text-text-muted dark:text-gray-400 text-sm">
-                      Samarkand, Uzbekistan
-                    </p>
-                  </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <span className="material-symbols-outlined text-primary mt-1">
+                <div>
+                  <p className="font-medium text-text-main dark:text-white group-hover:text-primary transition-colors">
+                    {contact.office}
+                  </p>
+                  <p className="text-text-muted dark:text-gray-400 text-sm">
+                    Samarkand, Uzbekistan
+                  </p>
+                </div>
+              </a>
+              <a
+                href="tel:+998662330101"
+                className="flex flex-col items-center text-center gap-3 group cursor-pointer"
+              >
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <span className="material-symbols-outlined text-primary text-xl">
                     phone
                   </span>
-                  <div>
-                    <p className="font-medium text-text-main dark:text-white">
-                      {contact.phone}
-                    </p>
-                    <p className="text-text-muted dark:text-gray-400 text-sm">
-                      +998 66 233 01 01
-                    </p>
-                  </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <span className="material-symbols-outlined text-primary mt-1">
+                <div>
+                  <p className="font-medium text-text-main dark:text-white group-hover:text-primary transition-colors">
+                    {contact.phone}
+                  </p>
+                  <p className="text-text-muted dark:text-gray-400 text-sm">
+                    +998 66 233 01 01
+                  </p>
+                </div>
+              </a>
+              <a
+                href="mailto:info@yangisamarqand.uz"
+                className="flex flex-col items-center text-center gap-3 group cursor-pointer"
+              >
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <span className="material-symbols-outlined text-primary text-xl">
                     mail
                   </span>
-                  <div>
-                    <p className="font-medium text-text-main dark:text-white">
-                      Email
-                    </p>
-                    <p className="text-text-muted dark:text-gray-400 text-sm">
-                      info@yangisamarqand.uz
-                    </p>
-                  </div>
                 </div>
-              </div>
+                <div>
+                  <p className="font-medium text-text-main dark:text-white group-hover:text-primary transition-colors">
+                    Email
+                  </p>
+                  <p className="text-text-muted dark:text-gray-400 text-sm">
+                    info@yangisamarqand.uz
+                  </p>
+                </div>
+              </a>
             </div>
-
-            {/* Map */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="rounded-2xl overflow-hidden h-[250px] border border-gray-100 dark:border-gray-800 shadow-lg"
-            >
-              <YMaps>
-                <Map
-                  defaultState={mapState}
-                  width="100%"
-                  height="100%"
-                  options={{
-                    suppressMapOpenBlock: true,
-                    autoFitToViewport: "always",
-                  }}
-                >
-                  <Placemark geometry={[39.6542, 66.9597]} />
-                </Map>
-              </YMaps>
-            </motion.div>
           </div>
 
-          {/* Contact Form */}
+          {/* Map */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-surface-light dark:bg-surface-dark rounded-2xl p-8 border border-gray-100 dark:border-gray-800 shadow-lg"
+            className="rounded-2xl overflow-hidden h-[400px] border border-gray-100 dark:border-gray-800 shadow-xl"
           >
-            <h3 className="text-xl font-bold text-text-main dark:text-white mb-6">
-              {contact.sendMessage}
-            </h3>
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-              <div>
-                <label className="block text-sm font-medium text-text-main dark:text-gray-300 mb-1">
-                  {contact.form.name}
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark text-text-main dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-text-main dark:text-gray-300 mb-1">
-                  {contact.form.email}
-                </label>
-                <input
-                  type="email"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark text-text-main dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-text-main dark:text-gray-300 mb-1">
-                  {contact.form.subject}
-                </label>
-                <input
-                  type="text"
-                  placeholder={contact.form.subjectPlaceholder}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark text-text-main dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-text-main dark:text-gray-300 mb-1">
-                  {contact.form.message}
-                </label>
-                <textarea
-                  rows={4}
-                  placeholder={contact.form.messagePlaceholder}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark text-text-main dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full h-12 rounded-lg bg-primary hover:bg-primary-dark text-white font-bold transition-all shadow-lg hover:translate-y-[-2px]"
+            <YMaps>
+              <Map
+                defaultState={mapState}
+                width="100%"
+                height="100%"
+                options={{
+                  suppressMapOpenBlock: true,
+                  autoFitToViewport: "always",
+                }}
               >
-                {contact.form.submit}
-              </button>
-            </form>
+                <Placemark geometry={[39.6542, 66.9597]} />
+              </Map>
+            </YMaps>
           </motion.div>
         </div>
       </div>
