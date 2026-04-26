@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
 :root {
   --background: #f8fbfb;
   --foreground: #0e171b;
@@ -43,11 +44,9 @@
   --animate-shimmer: shimmer 2s linear infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #111d21;
-    --foreground: #ffffff;
-  }
+:root.dark {
+  --background: #111d21;
+  --foreground: #ffffff;
 }
 
 body {
