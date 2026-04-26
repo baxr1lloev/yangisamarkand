@@ -104,6 +104,7 @@ export const dictionaries = {
         projectNotFound: "Project Not Found",
         activeTab: "Active Projects",
         completedTab: "Completed Projects",
+        backToMain: "Back to Home",
       },
       about: {
         philosophy: "Our Philosophy",
@@ -487,6 +488,7 @@ export const dictionaries = {
         projectNotFound: "Проект не найден",
         activeTab: "Действующие Проекты",
         completedTab: "Реализованные Проекты",
+        backToMain: "На главную",
       },
       about: {
         philosophy: "Наша Философия",
@@ -870,6 +872,7 @@ export const dictionaries = {
         projectNotFound: "Loyiha topilmadi",
         activeTab: "Faol Loyihalar",
         completedTab: "Amalga Oshirilgan Loyihalar",
+        backToMain: "Bosh sahifaga qaytish",
       },
       about: {
         philosophy: "Bizning Falsafa",
