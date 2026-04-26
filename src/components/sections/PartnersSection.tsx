@@ -32,7 +32,7 @@ export default function PartnersSection() {
                   alt="Partnership Image"
                   className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:scale-110 transition-transform duration-700"
                 />
-                <span className="relative z-10 text-4xl font-black text-primary/40 group-hover:text-primary transition-colors">
+                <span className="relative z-10 text-4xl font-black text-primary/40 group-hover:text-white transition-colors">
                   UNESCO
                 </span>
               </div>
@@ -70,7 +70,7 @@ export default function PartnersSection() {
                   alt="Partnership Image"
                   className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:scale-110 transition-transform duration-700"
                 />
-                <span className="relative z-10 text-4xl font-black text-primary/40 group-hover:text-primary transition-colors">
+                <span className="relative z-10 text-4xl font-black text-primary/40 group-hover:text-white transition-colors">
                   UNDP
                 </span>
               </div>
@@ -109,7 +109,7 @@ export default function PartnersSection() {
                   alt="Partnership Image"
                   className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:scale-110 transition-transform duration-700"
                 />
-                <span className="relative z-10 text-4xl font-black text-primary/40 group-hover:text-primary transition-colors">
+                <span className="relative z-10 text-4xl font-black text-primary/40 group-hover:text-white transition-colors">
                   WORLD BANK
                 </span>
               </div>

@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 type ActiveProject = {
   id: number;
@@ -16,7 +15,6 @@ type ActiveProject = {
 
 export default function ProjectsSection() {
   const { t } = useLanguage();
-  const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState('uzMade');
 
   const categories = [
@@ -63,7 +61,7 @@ export default function ProjectsSection() {
                  priority
                />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 z-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30 z-10"></div>
             <div className="relative z-20 flex flex-col items-center text-center max-w-3xl mx-auto gap-6">
                
               <h1 className="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight">
@@ -106,7 +104,6 @@ export default function ProjectsSection() {
                       type="button"
                       onClick={() => {
                         setSelectedCategory(cat.id);
-                        router.push(`/projects?category=${cat.id}`);
                       }}
                       className={`w-full flex items-center gap-3 px-3 py-3 text-sm rounded-lg transition-all text-left ${
                         selectedCategory === cat.id
@@ -225,6 +222,24 @@ export default function ProjectsSection() {
                       No projects in this category yet.
                     </div>
                   )}
+                </div>
+
+                {/* View All button */}
+                <div className="mt-8 flex items-center justify-between">
+                  <Link
+                    href={`/projects?category=${selectedCategory}`}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-bold text-sm hover:bg-primary-dark transition-all shadow-sm hover:-translate-y-0.5"
+                  >
+                    {t.sections.projects.viewArchive || 'View All'}
+                    <span className="material-symbols-outlined text-base">arrow_forward</span>
+                  </Link>
+                  <Link
+                    href="/"
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-gray-200 dark:border-gray-700 text-text-muted dark:text-gray-400 font-semibold text-sm hover:border-primary hover:text-primary transition-all"
+                  >
+                    <span className="material-symbols-outlined text-base">home</span>
+                    {t.sections.projects.backToMain || 'Back to Home'}
+                  </Link>
                 </div>
               </div>
             </div>

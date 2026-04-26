@@ -80,6 +80,16 @@ export default function ProjectsPageClient() {
 
       <section className="w-full py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
+          {/* Back to Home */}
+          <div className="mb-8">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-text-muted dark:text-gray-400 hover:text-primary transition-colors"
+            >
+              <span className="material-symbols-outlined text-base">arrow_back</span>
+              На главную
+            </Link>
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Sidebar */}
             <aside className="lg:col-span-3 sticky top-24">

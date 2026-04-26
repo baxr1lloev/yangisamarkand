@@ -100,10 +100,10 @@ export default function AboutSection() {
       {/* Mission & Vision Section with GlowCards */}
       <section className="py-20 px-6 lg:px-40 bg-background-light dark:bg-background-dark border-t border-slate-100 dark:border-slate-800">
         <div className="max-w-[1200px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-stretch">
             {/* Mission Card */}
-            <GlowCard glowColor="rgba(19, 105, 134, 0.3)">
-              <div className="group relative p-10 border-l-4 border-primary">
+            <GlowCard glowColor="rgba(19, 105, 134, 0.3)" className="h-full">
+              <div className="group relative p-10 border-l-4 border-primary h-full flex flex-col justify-between">
                 <div className="absolute top-10 right-10 text-slate-100 dark:text-slate-800 pointer-events-none group-hover:text-primary/10 transition-colors duration-300">
                   <span className="material-symbols-outlined text-[120px]">
                     flag
@@ -120,8 +120,8 @@ export default function AboutSection() {
               </div>
             </GlowCard>
             {/* Vision Card */}
-            <GlowCard glowColor="rgba(212, 157, 96, 0.3)" delay={0.15}>
-              <div className="group relative p-10 border-l-4 border-accent-gold">
+            <GlowCard glowColor="rgba(212, 157, 96, 0.3)" delay={0.15} className="h-full">
+              <div className="group relative p-10 border-l-4 border-accent-gold h-full flex flex-col justify-between">
                 <div className="absolute top-10 right-10 text-slate-100 dark:text-slate-800 pointer-events-none group-hover:text-accent-gold/10 transition-colors duration-300">
                   <span className="material-symbols-outlined text-[120px]">
                     visibility
@@ -199,8 +199,8 @@ export default function AboutSection() {
                     <div className="h-10 w-10 rounded-lg border border-primary/20 bg-primary/10 dark:bg-primary/15 text-primary dark:text-primary-300 flex items-center justify-center">
                       <Icon size={18} />
                     </div>
-                    <span className="text-[11px] font-semibold tracking-[0.14em] text-slate-400 dark:text-slate-500">
-                      {(idx + 1).toString().padStart(2, "0")}
+                    <span className="text-5xl font-black text-slate-200 dark:text-slate-700 leading-none select-none">
+                      {idx + 1}
                     </span>
                   </div>
 
@@ -239,7 +239,6 @@ export default function AboutSection() {
             {(about.values || []).map(
               (value: { title: string; desc: string }, idx: number) => {
                 const Icon = coreValueIcons[idx % coreValueIcons.length];
-                const number = `${idx + 1}`.padStart(2, "0");
 
                 return (
                   <motion.article
@@ -250,13 +249,10 @@ export default function AboutSection() {
                     viewport={{ once: true }}
                     className="group relative h-full rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white/90 dark:bg-white/[0.02] backdrop-blur-sm p-7 lg:p-8 shadow-[0_8px_30px_rgba(15,23,42,0.04)] dark:shadow-none transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30"
                   >
-                    <div className="mb-6 flex items-center justify-between">
+                    <div className="mb-6">
                       <div className="h-11 w-11 rounded-xl border border-primary/20 bg-primary/10 dark:bg-primary/15 text-primary dark:text-primary-300 flex items-center justify-center transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
                         <Icon size={20} strokeWidth={2} />
                       </div>
-                      <span className="text-[11px] font-semibold tracking-[0.16em] text-slate-400 dark:text-slate-500">
-                        {number}
-                      </span>
                     </div>
 
                     <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3 leading-snug">

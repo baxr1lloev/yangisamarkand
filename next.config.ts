@@ -23,6 +23,19 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'logo.clearbit.com',
       },
+      // Django backend media files (local development)
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '8000',
+        pathname: '/media/**',
+      },
+      {
+        protocol: 'http',
+        hostname: '127.0.0.1',
+        port: '8000',
+        pathname: '/media/**',
+      },
     ],
   },
 };

@@ -55,7 +55,17 @@ export default function NewsPage() {
 
   return (
     <div className="container mx-auto px-4 py-32 bg-background-light dark:bg-background-dark min-h-screen">
-      <SectionHeading title="News & Updates" subtitle="Latest Happenings in Samarkand" center />
+      {/* Back to Home */}
+      <div className="mb-8">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-text-muted dark:text-gray-400 hover:text-primary transition-colors"
+        >
+          <span className="material-symbols-outlined text-base">arrow_back</span>
+          На главную
+        </Link>
+      </div>
+      <SectionHeading title="News &amp; Updates" subtitle="Latest Happenings in Samarkand" center />
       
       {/* Filters */}
       <div className="flex justify-center gap-4 mt-8 mb-12 flex-wrap">

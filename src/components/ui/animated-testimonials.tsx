@@ -68,31 +68,27 @@ export const AnimatedTestimonials = ({
                   key={testimonial.name}
                   initial={{
                     opacity: 0,
-                    scale: 0.9,
-                    z: -100,
-                    rotate: rotations[index],
+                    scale: 0.92,
+                    filter: "blur(8px)",
                   }}
                   animate={{
-                    opacity: isActive(index) ? 1 : 0.7,
-                    scale: isActive(index) ? 1 : 0.95,
-                    z: isActive(index) ? 0 : -100,
-                    rotate: isActive(index) ? 0 : rotations[index],
+                    opacity: isActive(index) ? 1 : 0,
+                    scale: isActive(index) ? 1 : 0.92,
+                    filter: isActive(index) ? "blur(0px)" : "blur(8px)",
                     zIndex: isActive(index)
                       ? 999
                       : testimonials.length + 2 - index,
-                    y: isActive(index) ? [0, -80, 0] : 0,
                   }}
                   exit={{
                     opacity: 0,
-                    scale: 0.9,
-                    z: 100,
-                    rotate: rotations[index],
+                    scale: 0.95,
+                    filter: "blur(6px)",
                   }}
                   transition={{
-                    duration: 0.4,
-                    ease: "easeInOut",
+                    duration: 0.7,
+                    ease: [0.16, 1, 0.3, 1],
                   }}
-                  className="absolute inset-0 origin-bottom"
+                  className="absolute inset-0 origin-center"
                 >
                   <Image
                     src={testimonial.src}

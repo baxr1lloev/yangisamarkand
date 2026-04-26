@@ -45,7 +45,11 @@ export default function Header() {
         "(prefers-color-scheme: dark)",
       ).matches;
       setIsDark(prefersDark);
-      if (prefersDark) document.documentElement.classList.add("dark");
+      if (prefersDark) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
     }
   }, []);
 
@@ -110,16 +114,27 @@ export default function Header() {
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-8">
           <nav className="flex items-center gap-6">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.path}
-                className="text-[#0e171b] dark:text-gray-300 hover:text-primary dark:hover:text-primary-light text-sm font-medium leading-normal transition-colors"
-                onClick={(e) => handleScroll(e, item.path)}
-              >
-                {item.name}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const hash = item.path.substring(item.path.indexOf("#"));
+              const sectionId = hash.replace("#", "");
+              const isActive = pathname === "/" 
+                ? false  // on homepage, no page-level active
+                : pathname.startsWith(`/${sectionId}`);
+              return (
+                <a
+                  key={item.name}
+                  href={item.path}
+                  className={`text-sm font-medium leading-normal transition-colors ${
+                    isActive
+                      ? "text-primary dark:text-primary-light font-bold underline underline-offset-4 decoration-2"
+                      : "text-[#0e171b] dark:text-gray-300 hover:text-primary dark:hover:text-primary-light"
+                  }`}
+                  onClick={(e) => handleScroll(e, item.path)}
+                >
+                  {item.name}
+                </a>
+              );
+            })}
           </nav>
 
           <div className="h-6 w-px bg-gray-200 dark:bg-gray-700"></div>
