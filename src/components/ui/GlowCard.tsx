@@ -31,7 +31,7 @@ export default function GlowCard({
         className="absolute -inset-0.5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
         style={{ background: glowColor }}
       />
-      <div className="relative bg-surface-light dark:bg-surface-dark rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden backdrop-blur-sm transition-all duration-500 group-hover:border-primary/30 group-hover:shadow-2xl group-hover:-translate-y-1">
+      <div className="relative h-full bg-surface-light dark:bg-surface-dark rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden backdrop-blur-sm transition-all duration-500 group-hover:border-primary/30 group-hover:shadow-2xl group-hover:-translate-y-1">
         {children}
       </div>
     </motion.div>
