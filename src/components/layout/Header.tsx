@@ -16,7 +16,7 @@ const LangButton = ({
 }) => (
   <button
     onClick={() => setLang(lang)}
-    className={`${currentLang === lang ? "text-primary dark:text-primary-light font-bold" : "hover:text-primary transition-colors"}`}
+    className={`cursor-pointer ${currentLang === lang ? "text-primary dark:text-primary-light font-bold" : "hover:text-primary transition-colors"}`}
     aria-label={`Switch language to ${lang.toUpperCase()}`}
   >
     {lang.toUpperCase()}
@@ -26,6 +26,7 @@ const LangButton = ({
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const { t, language, setLanguage } = useLanguage();
   const pathname = usePathname();
   const router = useRouter();
@@ -51,6 +52,32 @@ export default function Header() {
         document.documentElement.classList.remove("dark");
       }
     }
+  }, []);
+
+  // Scroll spy to update active section
+  useEffect(() => {
+    setActiveSection(window.location.hash);
+
+    const sectionIds = ["about", "news", "projects", "partners", "council", "gallery", "contact"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: "-100px 0px -50% 0px" }
+    );
+
+    setTimeout(() => {
+      sectionIds.forEach((id) => {
+        const element = document.getElementById(id);
+        if (element) observer.observe(element);
+      });
+    }, 500);
+
+    return () => observer.disconnect();
   }, []);
 
   const toggleDarkMode = () => {
@@ -82,6 +109,7 @@ export default function Header() {
     setIsMobileMenuOpen(false);
 
     const hash = path.substring(path.indexOf("#"));
+    setActiveSection(hash);
 
     if (pathname === "/") {
       const target = document.querySelector(hash);
@@ -118,7 +146,7 @@ export default function Header() {
               const hash = item.path.substring(item.path.indexOf("#"));
               const sectionId = hash.replace("#", "");
               const isActive = pathname === "/" 
-                ? false  // on homepage, no page-level active
+                ? activeSection === hash
                 : pathname.startsWith(`/${sectionId}`);
               return (
                 <a
@@ -190,16 +218,26 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div className="lg:hidden absolute top-full left-0 w-full bg-white dark:bg-background-dark border-b border-gray-200 dark:border-gray-800 shadow-xl py-4 px-4 flex flex-col gap-4">
           <nav className="flex flex-col gap-4">
-            {navItems.map((item) => (
+            {navItems.map((item) => {
+              const hash = item.path.substring(item.path.indexOf("#"));
+              const sectionId = hash.replace("#", "");
+              const isActive = pathname === "/" 
+                ? activeSection === hash
+                : pathname.startsWith(`/${sectionId}`);
+              return (
               <a
                 key={item.name}
                 href={item.path}
-                className="text-[#0e171b] dark:text-gray-300 hover:text-primary text-base font-medium"
+                className={`text-base font-medium transition-colors ${
+                  isActive
+                    ? "text-primary dark:text-primary-light font-bold underline underline-offset-4 decoration-2"
+                    : "text-[#0e171b] dark:text-gray-300 hover:text-primary"
+                }`}
                 onClick={(e) => handleScroll(e, item.path)}
               >
                 {item.name}
               </a>
-            ))}
+            )})}
           </nav>
 
           <div className="h-px w-full bg-gray-100 dark:bg-gray-800"></div>

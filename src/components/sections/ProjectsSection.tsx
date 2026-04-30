@@ -36,9 +36,11 @@ export default function ProjectsSection() {
     },
   ];
 
-  const filteredActiveProjects = (t.activeProjectsData as ActiveProject[])
-    .filter((project) => project.category === selectedCategory)
-    .slice(0, 2);
+  const categoryProjects = (t.activeProjectsData as ActiveProject[])
+    .filter((project) => project.category === selectedCategory);
+  
+  const featuredProject = categoryProjects.length > 0 ? categoryProjects[0] : null;
+  const listProjects = categoryProjects.slice(1, 3);
 
   const fallbackByCategory: Record<string, string> = {
     uzMade: '/images/projects/projects_cover.png',
@@ -46,6 +48,8 @@ export default function ProjectsSection() {
     social: '/images/gallery/meeting.png',
     scientific: '/images/gallery/culture.png',
   };
+
+  const categoryIcon = categories.find((c) => c.id === selectedCategory)?.icon || 'lightbulb';
 
   return (
     <div className="w-full">
@@ -61,13 +65,13 @@ export default function ProjectsSection() {
                  priority
                />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30 z-10"></div>
-            <div className="relative z-20 flex flex-col items-center text-center max-w-3xl mx-auto gap-6">
+            <div className="absolute inset-0 bg-black/50 z-10"></div>
+            <div className="relative z-20 flex flex-col items-center text-center max-w-3xl mx-auto gap-6 drop-shadow-2xl">
                
               <h1 className="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight">
                 {t.sections.projects.title}
               </h1>
-              <p className="text-gray-100 text-lg md:text-xl font-normal leading-relaxed max-w-2xl">
+              <p className="text-gray-100 text-lg md:text-xl font-medium leading-relaxed max-w-2xl">
                 {t.sections.projects.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-4">
@@ -76,9 +80,6 @@ export default function ProjectsSection() {
                     {t.sections.projects.buttons.all}
                   </span>
                 </Link>
-                <button className="h-12 px-8 rounded-lg bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white text-base font-bold transition-all">
-                  {t.sections.projects.buttons.submit}
-                </button>
               </div>
             </div>
           </div>
@@ -105,7 +106,7 @@ export default function ProjectsSection() {
                       onClick={() => {
                         setSelectedCategory(cat.id);
                       }}
-                      className={`w-full flex items-center gap-3 px-3 py-3 text-sm rounded-lg transition-all text-left ${
+                      className={`w-full flex items-center gap-3 px-3 py-3 text-sm rounded-lg transition-all text-left cursor-pointer ${
                         selectedCategory === cat.id
                           ? 'bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-300 font-bold'
                           : 'text-text-main dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary font-medium'
@@ -129,35 +130,51 @@ export default function ProjectsSection() {
 
             {/* Content Area */}
             <div className="lg:col-span-9 space-y-12">
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 items-start">
-                <div className="space-y-6">
-                  <div className="inline-flex items-center gap-2 text-accent font-bold text-sm uppercase tracking-wider">
-                    <span className="material-symbols-outlined text-lg">lightbulb</span>
-                    {t.sections.projects.innovationHub}
+              {featuredProject && (
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 items-start">
+                  <div className="space-y-6">
+                    <div className="inline-flex items-center gap-2 text-accent font-bold text-sm uppercase tracking-wider">
+                      <span className="material-symbols-outlined text-lg">{categoryIcon}</span>
+                      {featuredProject.tag || t.sections.projects.innovationHub}
+                    </div>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-text-main dark:text-white leading-tight">
+                      {featuredProject.name}
+                    </h2>
+                    <p className="text-text-muted dark:text-gray-400 text-lg leading-relaxed line-clamp-4">
+                      {featuredProject.desc}
+                    </p>
+                    <div className="pt-2">
+                      <Link href={`/projects/${featuredProject.id}`} className="inline-flex items-center gap-1 text-primary font-bold hover:underline">
+                        {t.sections.projects.viewProfile} <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                      </Link>
+                    </div>
                   </div>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-text-main dark:text-white leading-tight">
-                    {t.sections.projects.empoweringTitle}
-                  </h2>
-                  <p className="text-text-muted dark:text-gray-400 text-lg leading-relaxed">
-                    {t.sections.projects.empoweringDesc}
-                  </p>
+                  
+                  {/* YouTube Video or Image */}
+                  <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-100 dark:border-gray-700">
+                    {featuredProject.youtubeId ? (
+                      <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src={`https://www.youtube.com/embed/${featuredProject.youtubeId}`} 
+                        title="YouTube video player" 
+                        frameBorder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerPolicy="strict-origin-when-cross-origin" 
+                        allowFullScreen
+                        className="absolute inset-0"
+                      ></iframe>
+                    ) : (
+                      <Image
+                        src={fallbackByCategory[selectedCategory] || '/images/projects/projects_cover.png'}
+                        alt={featuredProject.name}
+                        fill
+                        className="object-cover"
+                      />
+                    )}
+                  </div>
                 </div>
-                
-                {/* YouTube Video */}
-                <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-100 dark:border-gray-700">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/qr3tvR2tcJA?si=-u6hD1BC5k30IVmO" 
-                    title="YouTube video player" 
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerPolicy="strict-origin-when-cross-origin" 
-                    allowFullScreen
-                    className="absolute inset-0"
-                  ></iframe>
-                </div>
-              </div>
+              )}
 
               <div className="h-px bg-gray-200 dark:bg-gray-800"></div>
 
@@ -169,7 +186,7 @@ export default function ProjectsSection() {
                   </Link>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {filteredActiveProjects.map((project) => (
+                  {listProjects.map((project) => (
                     <div
                       key={project.id}
                       className="group flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1"
@@ -217,9 +234,9 @@ export default function ProjectsSection() {
                     </div>
                   ))}
 
-                  {filteredActiveProjects.length === 0 && (
+                  {listProjects.length === 0 && (
                     <div className="md:col-span-2 rounded-xl border border-dashed border-gray-300 dark:border-gray-700 p-8 text-center text-text-muted dark:text-gray-400">
-                      No projects in this category yet.
+                      No more projects in this category yet.
                     </div>
                   )}
                 </div>

@@ -35,7 +35,7 @@ export default function AboutSection() {
   return (
     <div className="w-full">
       {/* Hero Section with Parallax Effect */}
-      <section className="relative w-full h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+      <section className="relative w-full h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-background-dark/90 via-background-dark/60 to-transparent z-10"></div>
           <motion.div
@@ -69,10 +69,10 @@ export default function AboutSection() {
               </span> */}
             </div>
             <h1
-              className="text-white text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight mb-6"
+              className="text-white text-5xl lg:text-7xl font-extrabold leading-none tracking-tight mb-2"
               dangerouslySetInnerHTML={{ __html: about.title }}
             />
-            <p className="text-slate-200 text-lg lg:text-xl font-medium max-w-[600px] leading-relaxed">
+            <p className="text-slate-200 text-lg lg:text-xl font-medium max-w-[600px] leading-snug">
               {about.subtitle}
             </p>
           </motion.div>
@@ -80,7 +80,7 @@ export default function AboutSection() {
       </section>
 
       {/* History Section with animated reveal */}
-      <section className="py-20 px-6 lg:px-40 bg-white dark:bg-background-dark">
+      <section className="py-8 px-6 lg:px-40 bg-white dark:bg-background-dark">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -161,15 +161,6 @@ export default function AboutSection() {
             <p className="mt-6 text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
               {about.membershipDesc}
             </p>
-
-            <div className="mt-8">
-              <MagneticButton>
-                <button className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-white font-semibold shadow-sm hover:bg-primary-dark transition-colors">
-                  {about.membershipButton}
-                  <ArrowRight size={18} />
-                </button>
-              </MagneticButton>
-            </div>
           </motion.div>
 
           <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -195,13 +186,10 @@ export default function AboutSection() {
                   viewport={{ once: true }}
                   className={`group rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white/85 dark:bg-white/[0.03] backdrop-blur-sm p-6 lg:p-7 shadow-[0_8px_30px_rgba(15,23,42,0.05)] dark:shadow-none transition-all duration-300 hover:border-primary/30 hover:-translate-y-0.5 ${isLastOdd ? "sm:col-span-2" : ""}`}
                 >
-                  <div className="mb-5 flex items-center justify-between">
+                  <div className="mb-5 flex items-center">
                     <div className="h-10 w-10 rounded-lg border border-primary/20 bg-primary/10 dark:bg-primary/15 text-primary dark:text-primary-300 flex items-center justify-center">
                       <Icon size={18} />
                     </div>
-                    <span className="text-5xl font-black text-slate-200 dark:text-slate-700 leading-none select-none">
-                      {idx + 1}
-                    </span>
                   </div>
 
                   <p className="text-slate-800 dark:text-slate-100 text-lg leading-relaxed font-medium">

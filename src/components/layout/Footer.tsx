@@ -70,7 +70,7 @@ export default function Footer() {
           <ul className="space-y-3 text-sm text-gray-400">
             <li>
               <Link
-                href="/about"
+                href="/#about"
                 className="hover:text-white transition-colors"
               >
                 {t.nav.about}
@@ -78,20 +78,20 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="/projects"
+                href="/#projects"
                 className="hover:text-white transition-colors"
               >
                 {t.nav.projects}
               </Link>
             </li>
             <li>
-              <Link href="/news" className="hover:text-white transition-colors">
+              <Link href="/#news" className="hover:text-white transition-colors">
                 {t.nav.news}
               </Link>
             </li>
             <li>
               <Link
-                href="/partners"
+                href="/#partners"
                 className="hover:text-white transition-colors"
               >
                 {t.nav.partners}
@@ -99,7 +99,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="/gallery"
+                href="/#gallery"
                 className="hover:text-white transition-colors"
               >
                 {t.nav.gallery}

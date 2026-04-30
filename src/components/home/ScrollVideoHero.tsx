@@ -98,7 +98,7 @@ export default function ScrollVideoHero() {
             {/* Title with Cinematic Text Reveal */}
             <h1
               key={t.hero.title}
-              className="text-white text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight leading-[1.1] drop-shadow-2xl"
+              className="text-white text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[1.1] drop-shadow-2xl"
             >
               {t.hero.title.split(" ").map((word: string, i: number) => (
                 <span
@@ -127,7 +127,8 @@ export default function ScrollVideoHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 0.8, y: 0 }}
               transition={{ duration: 1.5, delay: 1.2, ease: "easeOut" }}
-              className="text-white/80 text-lg md:text-xl font-light leading-relaxed max-w-2xl tracking-wide"
+              className="text-white/80 text-base md:text-lg font-light leading-normal max-w-2xl"
+              style={{ fontFamily: "var(--font-roboto), sans-serif" }}
             >
               {t.hero.subtitle}
             </motion.p>

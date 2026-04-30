@@ -35,64 +35,58 @@ export default function ContactSection() {
 
         <div className="max-w-3xl mx-auto space-y-8">
           {/* Contact Info */}
-          <div className="bg-surface-light dark:bg-surface-dark rounded-2xl p-8 border border-gray-100 dark:border-gray-800 shadow-lg">
-            <h3 className="text-xl font-bold text-text-main dark:text-white mb-6 text-center">
+          {/* Contact Info */}
+          <div className="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 md:p-10 border border-gray-100 dark:border-gray-800 shadow-lg">
+            <h3 className="text-2xl font-bold text-text-main dark:text-white mb-8 text-center">
               {contact.info}
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="flex flex-col rounded-2xl border border-gray-200 dark:border-gray-700/50 bg-white dark:bg-white/5 divide-y divide-gray-200 dark:divide-gray-700/50 overflow-hidden shadow-sm">
+              <a
+                href="mailto:info@yangisamarqand.uz"
+                className="flex items-center gap-5 md:gap-6 p-4 md:p-6 hover:bg-gray-50 dark:hover:bg-white/5 transition-all group cursor-pointer"
+              >
+                <div className="w-12 h-12 md:w-14 md:h-14 shrink-0 bg-gray-100 dark:bg-white/10 rounded-xl md:rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <span className="material-symbols-outlined text-text-main dark:text-white group-hover:text-primary text-xl md:text-2xl">
+                    mail
+                  </span>
+                </div>
+                <div className="text-left flex-1">
+                  <p className="font-bold text-text-main dark:text-white text-base md:text-lg group-hover:text-primary transition-colors">
+                    info@yangisamarqand.uz
+                  </p>
+                </div>
+              </a>
+
               <a
                 href="https://maps.google.com/?q=39.6542,66.9597"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center text-center gap-3 group cursor-pointer"
+                className="flex items-center gap-5 md:gap-6 p-4 md:p-6 hover:bg-gray-50 dark:hover:bg-white/5 transition-all group cursor-pointer"
               >
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <span className="material-symbols-outlined text-primary text-xl">
+                <div className="w-12 h-12 md:w-14 md:h-14 shrink-0 bg-gray-100 dark:bg-white/10 rounded-xl md:rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <span className="material-symbols-outlined text-text-main dark:text-white group-hover:text-primary text-xl md:text-2xl">
                     location_on
                   </span>
                 </div>
-                <div>
-                  <p className="font-medium text-text-main dark:text-white group-hover:text-primary transition-colors">
-                    {contact.office}
-                  </p>
-                  <p className="text-text-muted dark:text-gray-400 text-sm">
+                <div className="text-left flex-1">
+                  <p className="font-bold text-text-main dark:text-white text-base md:text-lg leading-snug group-hover:text-primary transition-colors">
                     Samarkand, Uzbekistan
                   </p>
                 </div>
               </a>
+
               <a
                 href="tel:+998662330101"
-                className="flex flex-col items-center text-center gap-3 group cursor-pointer"
+                className="flex items-center gap-5 md:gap-6 p-4 md:p-6 hover:bg-gray-50 dark:hover:bg-white/5 transition-all group cursor-pointer"
               >
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <span className="material-symbols-outlined text-primary text-xl">
+                <div className="w-12 h-12 md:w-14 md:h-14 shrink-0 bg-gray-100 dark:bg-white/10 rounded-xl md:rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <span className="material-symbols-outlined text-text-main dark:text-white group-hover:text-primary text-xl md:text-2xl">
                     phone
                   </span>
                 </div>
-                <div>
-                  <p className="font-medium text-text-main dark:text-white group-hover:text-primary transition-colors">
-                    {contact.phone}
-                  </p>
-                  <p className="text-text-muted dark:text-gray-400 text-sm">
-                    +998 66 233 01 01
-                  </p>
-                </div>
-              </a>
-              <a
-                href="mailto:info@yangisamarqand.uz"
-                className="flex flex-col items-center text-center gap-3 group cursor-pointer"
-              >
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <span className="material-symbols-outlined text-primary text-xl">
-                    mail
-                  </span>
-                </div>
-                <div>
-                  <p className="font-medium text-text-main dark:text-white group-hover:text-primary transition-colors">
-                    Email
-                  </p>
-                  <p className="text-text-muted dark:text-gray-400 text-sm">
-                    info@yangisamarqand.uz
+                <div className="text-left flex-1">
+                  <p className="font-bold text-text-main dark:text-white text-base md:text-lg group-hover:text-primary transition-colors">
+                    +998 66 233-01-01
                   </p>
                 </div>
               </a>
