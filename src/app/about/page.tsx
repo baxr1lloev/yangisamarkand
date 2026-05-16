@@ -120,6 +120,102 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Membership Fees Table */}
+      {about.membershipFees && (
+        <section className="py-16 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <SectionHeading title={about.membershipFeesTitle} center />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-3xl mx-auto mt-10"
+            >
+              <div className="bg-surface-light dark:bg-surface-dark rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden shadow-sm">
+                <table className="w-full">
+                  <thead className="bg-primary/5 dark:bg-primary/10">
+                    <tr>
+                      <th className="text-left p-4 text-xs font-bold uppercase tracking-wide text-text-main dark:text-white">
+                        №
+                      </th>
+                      <th className="text-left p-4 text-xs font-bold uppercase tracking-wide text-text-main dark:text-white">
+                        {about.membershipFeesTitle?.split(" ").slice(-1)[0] === "Fees"
+                          ? "Category"
+                          : about.membershipFeesTitle?.includes("взнос")
+                            ? "Категория"
+                            : "Toifa"}
+                      </th>
+                      <th className="text-right p-4 text-xs font-bold uppercase tracking-wide text-text-main dark:text-white">
+                        {about.membershipFeesTitle?.split(" ").slice(-1)[0] === "Fees"
+                          ? "Annual Fee"
+                          : about.membershipFeesTitle?.includes("взнос")
+                            ? "Годовой взнос"
+                            : "Yillik badal"}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {about.membershipFees.map(
+                      (fee: { category: string; amount: string }, i: number) => (
+                        <tr
+                          key={i}
+                          className="border-t border-gray-100 dark:border-gray-800 hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors"
+                        >
+                          <td className="p-4 text-sm font-bold text-primary">
+                            {i + 1}
+                          </td>
+                          <td className="p-4 text-sm text-text-main dark:text-gray-300">
+                            {fee.category}
+                          </td>
+                          <td className="p-4 text-sm font-bold text-text-main dark:text-white text-right whitespace-nowrap">
+                            {fee.amount}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-text-muted dark:text-gray-500 text-sm text-center mt-4 italic">
+                {about.membershipFeesNote}
+              </p>
+            </motion.div>
+          </div>
+        </section>
+      )}
+
+      {/* Honorary Membership */}
+      {about.honoraryTitle && (
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-card-dark">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-3xl mx-auto"
+            >
+              <div className="bg-gradient-to-br from-amber-50 to-amber-100/50 dark:from-amber-900/20 dark:to-amber-800/10 rounded-2xl p-8 border border-amber-200 dark:border-amber-800/40">
+                <div className="flex items-start gap-4">
+                  <div className="size-12 rounded-full bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+                    <span className="material-symbols-outlined text-amber-600 dark:text-amber-400">
+                      military_tech
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-text-main dark:text-white mb-3">
+                      {about.honoraryTitle}
+                    </h3>
+                    <p className="text-text-muted dark:text-gray-400 leading-relaxed">
+                      {about.honoraryDesc}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }

@@ -1,1 +1,6 @@
-export { default } from "@/app/leadership/page";
+"use client";
+import CouncilSection from "@/components/sections/CouncilSection";
+
+export default function CouncilPage() {
+  return <CouncilSection />;
+}

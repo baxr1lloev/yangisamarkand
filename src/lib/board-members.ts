@@ -44,7 +44,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'Kompaniyalar guruhi “SAG”',
     },
     role: "deputyChairman",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=3540&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 2,
@@ -59,22 +59,22 @@ export const boardMembers: BoardMember[] = [
       uz: 'MChJ “GULOBOD YUG’OCH”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 3,
     name: {
-      en: "Azimov Sokhib",
-      ru: "АЗИМОВ Сохиб",
-      uz: "Azimov Soxib",
+      en: "Azimov Sokhib Asatovich",
+      ru: "АЗИМОВ Сохиб Асатович",
+      uz: "Azimov Soxib Asatovich",
     },
     workplace: {
-      en: 'LLC “IDEAL ELEKTRO LYUKS”',
-      ru: 'ООО “IDEAL ELEKTRO LYUKS”',
-      uz: 'MChJ “IDEAL ELEKTRO LYUKS”',
+      en: 'Group of Companies “IDEAL”',
+      ru: 'Группа компаний “IDEAL”',
+      uz: 'Kompaniyalar guruhi “IDEAL”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=1470&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 4,
@@ -89,7 +89,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'Kompaniyalar guruhi “FERRE”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?q=80&w=1374&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 5,
@@ -104,7 +104,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'MChJ “CHAYKA STROY SERVIS”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 6,
@@ -119,7 +119,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'MChJ “ASIA METALL PROF”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 7,
@@ -134,7 +134,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'MChJ “SAMARKAND GOLDEN CHEAKPEAS”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 8,
@@ -149,7 +149,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'Tsentr Dualnogo obrazovaniya Samarkandskogo Mejdunarodnogo Texnologicheskogo Universiteta',
     },
     role: "deputyChairman",
-    image: "https://images.unsplash.com/photo-1517070208541-6ddc4d3efbcb?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 9,
@@ -164,22 +164,22 @@ export const boardMembers: BoardMember[] = [
       uz: 'Kompaniyalar guruhi “AGROMIR”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 10,
     name: {
-      en: "Djakhangirov Tolib",
-      ru: "ДЖАХАНГИРОВ Толиб",
-      uz: "Djaxangirov Tolib",
+      en: "Djakhangirov Tolib Muzaffarovich",
+      ru: "ДЖАХАНГИРОВ Толиб Музаффарович",
+      uz: "Djaxangirov Tolib Muzaffarovich",
     },
     workplace: {
-      en: 'LLC “SHAKHEREZADE TOUR”',
-      ru: 'ООО “SHAKHEREZADE TOUR”',
-      uz: 'MChJ “SHAKHEREZADE TOUR”',
+      en: 'LLC “SHAXREZADA SAM STAR TUR”',
+      ru: 'ООО “SHAXREZADA SAM STAR TUR”',
+      uz: 'MChJ “SHAXREZADA SAM STAR TUR”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 11,
@@ -194,7 +194,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'MChJ “SAMARQAND KONSERVA”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=3540&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 12,
@@ -209,7 +209,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'Kompaniyalar guruhi “METIN”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 13,
@@ -219,12 +219,12 @@ export const boardMembers: BoardMember[] = [
       uz: "Komilov Nasim Qobiljonovich",
     },
     workplace: {
-      en: 'Group of Companies “MEROS”',
-      ru: 'Группа компаний “MEROS”',
-      uz: 'Kompaniyalar guruhi “MEROS”',
+      en: 'Group of Companies “MEROS PHARM”',
+      ru: 'Группа компаний “MEROS PHARM”',
+      uz: 'Kompaniyalar guruhi “MEROS PHARM”',
     },
     role: "deputyChairman",
-    image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=1470&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 14,
@@ -239,7 +239,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'Xususiy korxona "BEKA CHAROS"',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?q=80&w=1374&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 15,
@@ -254,7 +254,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'Kompaniyalar guruhi “SIYOB”',
     },
     role: "deputyChairman",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 16,
@@ -269,7 +269,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'MChJ “URGUT MIKRO METALL”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 17,
@@ -284,7 +284,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'Kompaniyalar guruhi “TESPACK”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 18,
@@ -299,7 +299,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'Xususiy korxona "KUMUSH TOLA"',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1517070208541-6ddc4d3efbcb?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 19,
@@ -314,7 +314,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'MChJ “KATTAQO’RG’ON ELEKTROTEXNIKA ZAVODI”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 20,
@@ -329,7 +329,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'MChJ “GULOBOD MEBEL”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 21,
@@ -344,7 +344,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'Kompaniyalar guruhi “REGAL”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=3540&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 22,
@@ -359,7 +359,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'MChJ “STEKLOPLASTIK”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 23,
@@ -369,12 +369,12 @@ export const boardMembers: BoardMember[] = [
       uz: "Salimova Sayyora Tojievna",
     },
     workplace: {
-      en: 'LLC "EKO PLANETA"',
-      ru: 'ООО "EKO PLANETA"',
-      uz: 'MChJ "EKO PLANETA"',
+      en: 'Group of Companies "EKO PLANETA"',
+      ru: 'Группа компаний "EKO PLANETA"',
+      uz: 'Kompaniyalar guruhi "EKO PLANETA"',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=1470&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 24,
@@ -389,7 +389,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'Kompaniyalar guruhi “SXF”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?q=80&w=1374&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 25,
@@ -404,7 +404,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'MChJ “STAR LINGER”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 26,
@@ -419,7 +419,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'MChJ “ХAMIDOV MURODJON”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 27,
@@ -434,7 +434,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'Konsern “SHARQ SANOAT”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 28,
@@ -449,7 +449,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'Kompaniyalar guruhi “SOF”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1517070208541-6ddc4d3efbcb?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 29,
@@ -464,7 +464,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'Kompaniyalar guruhi “ZARMED”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 30,
@@ -479,7 +479,7 @@ export const boardMembers: BoardMember[] = [
       uz: 'Kompaniyalar guruhi “NAVOBOD NASLLI PARRANDA”',
     },
     role: "chairman",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=3387&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
   {
     id: 31,
@@ -489,12 +489,12 @@ export const boardMembers: BoardMember[] = [
       uz: "Qayumov Kamov Akbarali Qosimalievich",
     },
     workplace: {
-      en: 'LLC “NURLI KELAJAK ISHONCH SERVIS”',
-      ru: 'ООО “NURLI KELAJAK ISHONCH SERVIS”',
-      uz: 'MChJ “NURLI KELAJAK ISHONCH SERVIS”',
+      en: 'Group of Companies “NURLI KELAJAK ISHONCH SERVIS”',
+      ru: 'Группа компаний “NURLI KELAJAK ISHONCH SERVIS”',
+      uz: 'Kompaniyalar guruhi “NURLI KELAJAK ISHONCH SERVIS”',
     },
     role: "member",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=3540&auto=format&fit=crop",
+    image: "/images/default-avatar.png",
   },
 ];
 

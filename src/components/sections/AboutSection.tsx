@@ -200,6 +200,100 @@ export default function AboutSection() {
             })}
           </div>
         </div>
+
+        {/* Fee Structure Table */}
+        {about.membershipFees && (
+          <div className="max-w-[1200px] mx-auto relative z-10 mt-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-3xl mx-auto"
+            >
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white text-center mb-8">
+                {about.membershipFeesTitle}
+              </h3>
+              <div className="rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white/85 dark:bg-white/[0.03] backdrop-blur-sm overflow-hidden shadow-[0_8px_30px_rgba(15,23,42,0.05)] dark:shadow-none">
+                <table className="w-full">
+                  <thead className="bg-primary/5 dark:bg-primary/10">
+                    <tr>
+                      <th className="text-left p-4 text-xs font-bold uppercase tracking-wide text-slate-900 dark:text-white">
+                        №
+                      </th>
+                      <th className="text-left p-4 text-xs font-bold uppercase tracking-wide text-slate-900 dark:text-white">
+                        {about.membershipFeesTitle?.includes("Fees")
+                          ? "Category"
+                          : about.membershipFeesTitle?.includes("взнос")
+                            ? "Категория"
+                            : "Toifa"}
+                      </th>
+                      <th className="text-right p-4 text-xs font-bold uppercase tracking-wide text-slate-900 dark:text-white">
+                        {about.membershipFeesTitle?.includes("Fees")
+                          ? "Annual Fee"
+                          : about.membershipFeesTitle?.includes("взнос")
+                            ? "Годовой взнос"
+                            : "Yillik badal"}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {about.membershipFees.map(
+                      (fee: { category: string; amount: string }, i: number) => (
+                        <tr
+                          key={i}
+                          className="border-t border-slate-100 dark:border-white/5 hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors"
+                        >
+                          <td className="p-4 text-sm font-bold text-primary">
+                            {i + 1}
+                          </td>
+                          <td className="p-4 text-sm text-slate-700 dark:text-slate-300">
+                            {fee.category}
+                          </td>
+                          <td className="p-4 text-sm font-bold text-slate-900 dark:text-white text-right whitespace-nowrap">
+                            {fee.amount}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-slate-500 dark:text-slate-400 text-sm text-center mt-4 italic">
+                {about.membershipFeesNote}
+              </p>
+            </motion.div>
+          </div>
+        )}
+
+        {/* Honorary Membership */}
+        {about.honoraryTitle && (
+          <div className="max-w-[1200px] mx-auto relative z-10 mt-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-3xl mx-auto"
+            >
+              <div className="bg-gradient-to-br from-amber-50 to-amber-100/50 dark:from-amber-900/20 dark:to-amber-800/10 rounded-2xl p-8 border border-amber-200 dark:border-amber-800/40">
+                <div className="flex items-start gap-4">
+                  <div className="size-12 rounded-full bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+                    <span className="material-symbols-outlined text-amber-600 dark:text-amber-400">
+                      military_tech
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                      {about.honoraryTitle}
+                    </h3>
+                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      {about.honoraryDesc}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
       </section>
 
       {/* Core Values Section - Minimal Redesign */}
