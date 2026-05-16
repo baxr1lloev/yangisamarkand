@@ -32,21 +32,35 @@ jobs:
 
       - name: Prepare standalone package
         run: |
-          # Find the server.js in the standalone output (Next.js nests it under the project path)
-          SERVER_DIR=$(find .next/standalone -name "server.js" -exec dirname {} \;)
-          echo "Found standalone server at: $SERVER_DIR"
+          # Debug: show standalone structure
+          echo "=== Standalone directory structure ==="
+          find .next/standalone -maxdepth 3 -type f -name "server.js"
+          ls -la .next/standalone/
           
-          # Copy public assets and static files into the standalone directory
+          # Find the directory containing server.js
+          SERVER_JS=$(find .next/standalone -name "server.js" -type f | head -1)
+          
+          if [ -z "$SERVER_JS" ]; then
+            echo "ERROR: server.js not found in standalone output!"
+            exit 1
+          fi
+          
+          SERVER_DIR=$(dirname "$SERVER_JS")
+          echo "Found server.js at: $SERVER_JS"
+          echo "Server directory: $SERVER_DIR"
+          
+          # Copy public assets and static files into the server directory
           cp -r public "$SERVER_DIR/"
           mkdir -p "$SERVER_DIR/.next/static"
-          cp -r .next/static/* "$SERVER_DIR/.next/static/"
+          cp -r .next/static/. "$SERVER_DIR/.next/static/"
           
-          # Move the standalone content to a clean deploy directory
+          # Create clean deploy directory
           mkdir -p deploy
           cp -r "$SERVER_DIR"/. deploy/
           
-          echo "Deploy package contents:"
+          echo "=== Deploy package contents ==="
           ls -la deploy/
+          echo "=== Deploy package size ==="
           du -sh deploy/
 
       - name: Upload artifact for deployment
