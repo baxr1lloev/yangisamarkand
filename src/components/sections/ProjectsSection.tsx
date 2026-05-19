@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import Link from 'next/link';
 import Image from 'next/image';
+import { buildApiUrl } from '@/lib/api';
 
 type ActiveProject = {
   id: number;
@@ -10,7 +11,10 @@ type ActiveProject = {
   tag: string;
   desc: string;
   category: string;
+  status?: string;
+  active?: boolean;
   youtubeId?: string;
+  youtube_id?: string;
   telegramLink?: string;
 };
 
@@ -20,6 +24,11 @@ export default function ProjectsSection() {
 
   const categories = [
     { id: 'uzMade', icon: 'play_circle', label: 'Uz Made' },
+    {
+      id: 'industry',
+      icon: 'factory',
+      label: t.sections.projects.categories?.industry || 'Industry Forum',
+    },
     {
       id: 'startups',
       icon: 'rocket_launch',
@@ -37,14 +46,46 @@ export default function ProjectsSection() {
     },
   ];
 
-  const categoryProjects = (t.activeProjectsData as ActiveProject[])
-    .filter((project) => project.category === selectedCategory);
+  const [apiProjects, setApiProjects] = React.useState<ActiveProject[]>([]);
+
+  React.useEffect(() => {
+    fetch(buildApiUrl('/api/projects/'))
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to load projects');
+        return res.json();
+      })
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setApiProjects(data);
+        }
+      })
+      .catch(() => {
+        setApiProjects([]);
+      });
+  }, []);
+
+  const sourceProjects =
+    apiProjects.length > 0 ? apiProjects : (t.activeProjectsData as ActiveProject[]);
+
+  const categoryProjects = sourceProjects
+    .map((project) => ({
+      ...project,
+      youtubeId: project.youtubeId || project.youtube_id,
+      status:
+        project.status ||
+        (project.active === false ? 'completed' : 'active'),
+    }))
+    .filter(
+      (project) =>
+        project.category === selectedCategory && project.status !== 'completed',
+    );
   
   const featuredProject = categoryProjects.length > 0 ? categoryProjects[0] : null;
   const listProjects = categoryProjects.slice(1, 3);
 
   const fallbackByCategory: Record<string, string> = {
     uzMade: '/images/projects/projects_cover.png',
+    industry: '/images/gallery/construction.png',
     startups: '/images/gallery/education.png',
     social: '/images/gallery/meeting.png',
     scientific: '/images/gallery/culture.png',
@@ -141,9 +182,10 @@ export default function ProjectsSection() {
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-text-main dark:text-white leading-tight">
                       {featuredProject.name}
                     </h2>
-                    <p className="text-text-muted dark:text-gray-400 text-lg leading-relaxed line-clamp-4">
-                      {featuredProject.desc}
-                    </p>
+                    <div
+                      className="text-text-muted dark:text-gray-400 text-lg leading-relaxed line-clamp-4 ckeditor-content"
+                      dangerouslySetInnerHTML={{ __html: featuredProject.desc }}
+                    />
                     <div className="pt-2 flex flex-wrap items-center gap-3">
                       <Link href={`/projects/${featuredProject.id}`} className="inline-flex items-center gap-1 text-primary font-bold hover:underline">
                         {t.sections.projects.viewProfile} <span className="material-symbols-outlined text-sm">arrow_forward</span>
@@ -236,9 +278,10 @@ export default function ProjectsSection() {
                         <h4 className="text-xl font-bold text-text-main dark:text-white mb-2">
                           {project.name}
                         </h4>
-                        <p className="text-text-muted dark:text-gray-400 text-sm mb-4 line-clamp-3">
-                          {project.desc}
-                        </p>
+                        <div
+                          className="text-text-muted dark:text-gray-400 text-sm mb-4 line-clamp-3 ckeditor-content"
+                          dangerouslySetInnerHTML={{ __html: project.desc }}
+                        />
                         <div className="mt-auto flex items-center gap-3">
                           <Link href={`/projects/${project.id}`} className="text-primary font-bold text-sm hover:underline">
                             {t.sections.projects.viewProfile}

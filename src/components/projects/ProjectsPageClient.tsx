@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import ProjectsMapHero from "@/components/projects/ProjectsMapHero";
 import { useLanguage } from "@/context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,9 +12,9 @@ import { buildApiUrl } from "@/lib/api";
 export default function ProjectsPageClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
 
-  const allowedCategories = ["uzMade", "startups", "social", "scientific"] as const;
+  const allowedCategories = ["uzMade", "industry", "startups", "social", "scientific"] as const;
   type CategoryId = (typeof allowedCategories)[number];
   const normalizeCategory = (value: string | null): CategoryId =>
     value && allowedCategories.includes(value as CategoryId)
@@ -31,6 +32,11 @@ export default function ProjectsPageClient() {
       id: "uzMade" as CategoryId,
       icon: "play_circle",
       label: "Uz Made",
+    },
+    {
+      id: "industry" as CategoryId,
+      icon: "factory",
+      label: t.sections.projects.categories?.industry || "Industry Forum",
     },
     {
       id: "startups" as CategoryId,
@@ -51,18 +57,15 @@ export default function ProjectsPageClient() {
 
   type ProjectData = { id: number; name: string; tag: string; desc: string; category: string; status: string; youtube_id?: string };
   const [allProjects, setAllProjects] = useState<ProjectData[]>([]);
-  const [loading, setLoading] = useState(true);
 
   React.useEffect(() => {
     fetch(buildApiUrl("/api/projects/"))
       .then(res => res.json())
       .then(data => {
         setAllProjects(data);
-        setLoading(false);
       })
       .catch(err => {
         console.error(err);
-        setLoading(false);
       });
   }, []);
 
@@ -73,6 +76,16 @@ export default function ProjectsPageClient() {
   const filteredCompletedProjects = allProjects.filter(
     (p) => p.category === selectedCategory && p.status === 'completed',
   );
+
+  const featuredProject = filteredActiveProjects[0] || filteredCompletedProjects[0];
+  const selectedCategoryMeta = categories.find((cat) => cat.id === selectedCategory);
+  const fallbackByCategory: Record<CategoryId, string> = {
+    uzMade: "/images/projects/projects_cover.png",
+    industry: "/images/gallery/construction.png",
+    startups: "/images/gallery/education.png",
+    social: "/images/gallery/meeting.png",
+    scientific: "/images/gallery/culture.png",
+  };
 
   return (
     <>
@@ -133,33 +146,63 @@ export default function ProjectsPageClient() {
                 <div className="space-y-6">
                   <div className="inline-flex items-center gap-2 text-accent font-bold text-sm uppercase tracking-wider">
                     <span className="material-symbols-outlined text-lg">
-                      lightbulb
+                      {selectedCategoryMeta?.icon || "lightbulb"}
                     </span>
-                    {t.sections.projects.innovationHub || "Innovation Hub"}
+                    {featuredProject?.tag ||
+                      selectedCategoryMeta?.label ||
+                      t.sections.projects.innovationHub ||
+                      "Innovation Hub"}
                   </div>
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-text-main dark:text-white leading-tight">
-                    {t.sections.projects.empoweringTitle ||
+                    {featuredProject?.name ||
+                      t.sections.projects.empoweringTitle ||
                       "Empowering the Next Generation of Innovators"}
                   </h2>
-                  <p className="text-text-muted dark:text-gray-400 text-lg leading-relaxed">
-                    {t.sections.projects.empoweringDesc ||
-                      "Our startup incubator provides seed funding, mentorship, and workspace for young entrepreneurs in Samarkand."}
-                  </p>
+                  {featuredProject ? (
+                    <div
+                      className="text-text-muted dark:text-gray-400 text-lg leading-relaxed line-clamp-5 ckeditor-content"
+                      dangerouslySetInnerHTML={{ __html: featuredProject.desc }}
+                    />
+                  ) : (
+                    <p className="text-text-muted dark:text-gray-400 text-lg leading-relaxed">
+                      {t.sections.projects.empoweringDesc ||
+                        "Our startup incubator provides seed funding, mentorship, and workspace for young entrepreneurs in Samarkand."}
+                    </p>
+                  )}
                 </div>
 
-                {/* YouTube Video - show first uzMade video */}
                 <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-100 dark:border-gray-700">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/SmPNYkjfGbY"
-                    title="Uz Made — Episode 1"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                    className="absolute inset-0"
-                  ></iframe>
+                  {featuredProject?.youtube_id ? (
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={`https://www.youtube.com/embed/${featuredProject.youtube_id}`}
+                      title={featuredProject.name}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      className="absolute inset-0"
+                    ></iframe>
+                  ) : (
+                    <>
+                      <Image
+                        src={fallbackByCategory[selectedCategory]}
+                        alt={selectedCategoryMeta?.label || "Project category"}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                      <div className="absolute bottom-5 left-5 right-5 flex items-center gap-3 text-white">
+                        <span className="material-symbols-outlined text-3xl">
+                          {selectedCategoryMeta?.icon || "lightbulb"}
+                        </span>
+                        <span className="font-bold text-lg">
+                          {selectedCategoryMeta?.label}
+                        </span>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
 
@@ -249,13 +292,21 @@ export default function ProjectsPageClient() {
                                 dangerouslySetInnerHTML={{ __html: project.desc }}
                               />
                               {project.youtube_id ? (
-                                <button
-                                  onClick={() => setLightboxVideo(project.youtube_id!)}
-                                  className="mt-auto text-red-600 dark:text-red-400 font-bold text-sm hover:underline flex items-center gap-1"
-                                >
-                                  <span className="material-symbols-outlined text-base">play_circle</span>
-                                  Watch Video
-                                </button>
+                                <div className="mt-auto flex flex-wrap items-center gap-4">
+                                  <button
+                                    onClick={() => setLightboxVideo(project.youtube_id!)}
+                                    className="text-red-600 dark:text-red-400 font-bold text-sm hover:underline flex items-center gap-1"
+                                  >
+                                    <span className="material-symbols-outlined text-base">play_circle</span>
+                                    Watch Video
+                                  </button>
+                                  <Link
+                                    href={`/projects/${project.id}`}
+                                    className="text-primary font-bold text-sm hover:underline"
+                                  >
+                                    {t.sections.projects.viewProfile || "View Profile"}
+                                  </Link>
+                                </div>
                               ) : (
                                 <Link
                                   href={`/projects/${project.id}`}
@@ -317,13 +368,21 @@ export default function ProjectsPageClient() {
                                 dangerouslySetInnerHTML={{ __html: project.desc }}
                               />
                               {project.youtube_id ? (
-                                <button
-                                  onClick={() => setLightboxVideo(project.youtube_id!)}
-                                  className="mt-auto text-red-600 dark:text-red-400 font-bold text-sm hover:underline flex items-center gap-1"
-                                >
-                                  <span className="material-symbols-outlined text-base">play_circle</span>
-                                  Watch Video
-                                </button>
+                                <div className="mt-auto flex flex-wrap items-center gap-4">
+                                  <button
+                                    onClick={() => setLightboxVideo(project.youtube_id!)}
+                                    className="text-red-600 dark:text-red-400 font-bold text-sm hover:underline flex items-center gap-1"
+                                  >
+                                    <span className="material-symbols-outlined text-base">play_circle</span>
+                                    Watch Video
+                                  </button>
+                                  <Link
+                                    href={`/projects/${project.id}`}
+                                    className="text-primary font-bold text-sm hover:underline"
+                                  >
+                                    {t.sections.projects.viewProfile || "View Profile"}
+                                  </Link>
+                                </div>
                               ) : (
                                 <Link
                                   href={`/projects/${project.id}`}

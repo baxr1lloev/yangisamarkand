@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import AboutSection from "@/components/sections/AboutSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
+import MadeInSamarkandSection from "@/components/sections/MadeInSamarkandSection";
 import PartnersSection from "@/components/sections/PartnersSection";
 import CouncilSection from "@/components/sections/CouncilSection";
 import GallerySection from "@/components/sections/GallerySection";
@@ -250,6 +251,8 @@ export default function Home() {
       <section id="projects" className="scroll-mt-20">
         <ProjectsSection />
       </section>
+
+      <MadeInSamarkandSection />
 
       <section id="partners" className="scroll-mt-20">
         <PartnersSection />

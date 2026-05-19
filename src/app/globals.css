@@ -170,3 +170,51 @@ html.lenis, html.lenis body {
   background: rgba(19, 105, 134, 0.3);
   color: inherit;
 }
+
+.ckeditor-content h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-text-main);
+}
+
+.dark .ckeditor-content h3 {
+  color: #ffffff;
+}
+
+.ckeditor-content table {
+  width: 100%;
+  margin: 1rem 0 1.5rem;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.ckeditor-content th,
+.ckeditor-content td {
+  border: 1px solid rgba(80, 132, 149, 0.22);
+  padding: 0.85rem 1rem;
+  vertical-align: top;
+}
+
+.ckeditor-content th {
+  background: rgba(19, 105, 134, 0.08);
+  color: var(--color-text-main);
+  font-weight: 800;
+  text-align: left;
+}
+
+.ckeditor-content td {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.dark .ckeditor-content th {
+  background: rgba(19, 105, 134, 0.22);
+  color: #ffffff;
+}
+
+.dark .ckeditor-content td {
+  background: rgba(255, 255, 255, 0.03);
+}

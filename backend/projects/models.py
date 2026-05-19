@@ -5,6 +5,7 @@ from ckeditor.fields import RichTextField
 class Project(models.Model):
     CATEGORY_CHOICES = [
         ('uzMade', 'Uz Made'),
+        ('industry', 'Industry Forum'),
         ('startups', 'Startups'),
         ('social', 'Social'),
         ('scientific', 'Scientific'),

@@ -77,6 +77,7 @@ export const dictionaries = {
         },
         categoriesTitle: "Categories",
         categories: {
+          industry: "Industry Forum",
           social: "Social Projects",
           scientific: "Scientific Support",
           startups: "Youth Startups",
@@ -474,6 +475,7 @@ export const dictionaries = {
         },
         categoriesTitle: "Категории",
         categories: {
+          industry: "Форум промышленников",
           social: "Социальные Проекты",
           scientific: "Научная Поддержка",
           startups: "Молодежные Стартапы",
@@ -871,6 +873,7 @@ export const dictionaries = {
         },
         categoriesTitle: "Toifalar",
         categories: {
+          industry: "Sanoatchilar forumi",
           social: "Ijtimoiy Loyihalar",
           scientific: "Ilmiy Qo'llab-quvvatlash",
           startups: "Yoshlar Startaplari",
