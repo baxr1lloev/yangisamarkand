@@ -24,12 +24,20 @@ export default function PartnersPage() {
           <div className="grid grid-cols-1 gap-8">
             {/* Memorandum Item 1 */}
             <div className="group bg-background-light dark:bg-surface-dark rounded-2xl border border-gray-100 dark:border-gray-800 p-8 flex flex-col md:flex-row gap-8 hover:shadow-lg transition-all duration-300">
-              <div className="w-full md:w-1/4 flex-shrink-0 flex items-center justify-center bg-white dark:bg-white/5 rounded-xl p-8 border border-gray-100 dark:border-gray-700">
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7s7V4SgH3XmJ7qXgT0bL2yX9cWkF5sZ0tA4R1dE3nB8_G6jH9pM2lK5oN7qV8xY0uZ3wT6_sR4jC7i1eL9vB2kM5nO_P0xH8gT3qF6lJ9mX4bV1cW7yA3zD5eR2fG0hI8jK4lL6mN9nB7oO5pC1qR4sT3wV8uY0xZ2aB5dC6eF9gH1iJ3kL5mN7nP9oQ6rS8tV2wU4xY6zD8aB0cE2fG5hJ7kL9oP3qS1tV4wX6y"
-                  alt="UNESCO Logo"
-                  className="max-h-16 w-auto opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0"
-                />
+              <div className="w-full md:w-1/4 flex-shrink-0 flex flex-col items-center justify-center bg-white dark:bg-white/5 rounded-xl p-8 border border-gray-100 dark:border-gray-700 gap-3 group/img">
+                <svg viewBox="0 0 100 80" className="h-16 w-auto text-primary dark:text-blue-400 opacity-80 group-hover/img:opacity-100 transition-opacity" fill="currentColor">
+                  <polygon points="50,5 5,25 95,25" />
+                  <rect x="10" y="27" width="80" height="4" />
+                  <rect x="15" y="33" width="6" height="32" />
+                  <rect x="29" y="33" width="6" height="32" />
+                  <rect x="43" y="33" width="6" height="32" />
+                  <rect x="57" y="33" width="6" height="32" />
+                  <rect x="71" y="33" width="6" height="32" />
+                  <rect x="85" y="33" width="6" height="32" />
+                  <rect x="5" y="67" width="90" height="4" />
+                  <rect x="2" y="73" width="96" height="4" />
+                </svg>
+                <span className="text-sm font-black tracking-[0.2em] text-primary dark:text-blue-400 opacity-80 group-hover/img:opacity-100 transition-opacity">UNESCO</span>
               </div>
               <div className="flex-1 flex flex-col justify-center">
                 <div className="flex items-center gap-3 mb-4">
@@ -65,12 +73,16 @@ export default function PartnersPage() {
 
             {/* Memorandum Item 2 */}
             <div className="group bg-background-light dark:bg-surface-dark rounded-2xl border border-gray-100 dark:border-gray-800 p-8 flex flex-col md:flex-row gap-8 hover:shadow-lg transition-all duration-300">
-              <div className="w-full md:w-1/4 flex-shrink-0 flex items-center justify-center bg-white dark:bg-white/5 rounded-xl p-8 border border-gray-100 dark:border-gray-700">
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8kF2sJ5wL7pG4qH1zT6bV9cW3kE5sX0tA4R8mD3nB2gG6jH9pM2lK5oN7qV8xY0uZ3wT6_sR4jC7i1eL9vB2kM5nO_P0xH8gT3qF6lJ9mX4bV1cW7yA3zD5eR2fG0hI8jK4lL6mN9nB7oO5pC1qR4sT3wV8uY0xZ2aB5dC6eF9gH1iJ3kL5mN7nP9oQ6rS8tV2wU4xY6zD8aB0cE2fG5hJ7kL9oP3qS1tV4wX6y"
-                  alt="EBRD Logo"
-                  className="max-h-16 w-auto opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0"
-                />
+              <div className="w-full md:w-1/4 flex-shrink-0 flex flex-col items-center justify-center bg-white dark:bg-white/5 rounded-xl p-8 border border-gray-100 dark:border-gray-700 gap-2 group/img">
+                <div className="flex items-center gap-2">
+                  <div className="flex flex-col gap-1">
+                    <div className="w-8 h-2 bg-green-600 rounded-sm transform -skew-x-12"></div>
+                    <div className="w-10 h-2 bg-blue-600 rounded-sm transform -skew-x-12"></div>
+                    <div className="w-6 h-2 bg-yellow-500 rounded-sm transform -skew-x-12"></div>
+                  </div>
+                  <span className="text-3xl font-black tracking-tight text-[#006633] dark:text-[#00cc66]">EBRD</span>
+                </div>
+                <span className="text-[9px] font-bold uppercase tracking-wider text-text-muted dark:text-gray-400 text-center max-w-[150px]">European Bank for Reconstruction</span>
               </div>
               <div className="flex-1 flex flex-col justify-center">
                 <div className="flex items-center gap-3 mb-4">
@@ -108,7 +120,7 @@ export default function PartnersPage() {
             <div className="group bg-background-light dark:bg-surface-dark rounded-2xl border border-gray-100 dark:border-gray-800 p-8 flex flex-col md:flex-row gap-8 hover:shadow-lg transition-all duration-300">
               <div className="w-full md:w-1/4 flex-shrink-0 flex items-center justify-center bg-white dark:bg-white/5 rounded-xl p-8 border border-gray-100 dark:border-gray-700">
                 <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2sD9fG4hL6kP5qW1zT8cV9dW3kE4sX0tA5R7mD2nB1gG5jH8pM3lK4oN6qV9xY1uZ2wT5_sR3jC8i1eL0vB3kM4nO_P1xH7gT2qF5lJ8mX5bV0cW6yA4zD6eF8gH2iJ4kL3mN8nP0oQ5rS9tV3wU5xY7zD9aB1cE3fG4hJ6kL0oP2qS0tV5wX6y"
+                  src="/images/partners/jica.png"
                   alt="JICA Logo"
                   className="max-h-16 w-auto opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0"
                 />

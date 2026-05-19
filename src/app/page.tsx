@@ -14,6 +14,7 @@ import ProjectsSection from "@/components/sections/ProjectsSection";
 import MadeInSamarkandSection from "@/components/sections/MadeInSamarkandSection";
 import PartnersSection from "@/components/sections/PartnersSection";
 import CouncilSection from "@/components/sections/CouncilSection";
+import CouncilWorkSection from "@/components/sections/CouncilWorkSection";
 import GallerySection from "@/components/sections/GallerySection";
 import ContactSection from "@/components/sections/ContactSection";
 import ScrollVideoHero from "@/components/home/ScrollVideoHero";
@@ -260,6 +261,7 @@ export default function Home() {
 
       <section id="council" className="scroll-mt-20">
         <CouncilSection />
+        <CouncilWorkSection />
       </section>
 
       <section id="gallery" className="scroll-mt-20">
