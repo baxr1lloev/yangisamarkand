@@ -40,11 +40,11 @@ export default function ProjectsMapHero() {
           {/* Content */}
           <div className="relative z-20 flex flex-col items-center text-center max-w-3xl mx-auto gap-6 pointer-events-none">
             <h1 className="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight drop-shadow-2xl">
-              {t.sections.projects.title || "Building Our Future"}
+              {t.sections.projects.title || "Active Projects"}
             </h1>
             <p className="text-gray-100 text-lg md:text-xl font-normal leading-relaxed max-w-2xl drop-shadow-md">
               {t.sections.projects.subtitle ||
-                "Explore the initiatives driving social, scientific, and economic growth in Samarkand."}
+                "Active projects of the Public Consultative Council are initiatives started by the Council Board and operating in real time."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-4 pointer-events-auto">
               <button className="h-12 px-8 rounded-lg bg-primary hover:bg-primary-dark text-white text-base font-bold transition-all shadow-lg hover:translate-y-[-2px]">

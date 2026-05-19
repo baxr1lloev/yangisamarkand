@@ -64,8 +64,7 @@ export default function ProjectsSection() {
       });
   }, []);
 
-  const sourceProjects =
-    apiProjects.length > 0 ? apiProjects : (t.activeProjectsData as ActiveProject[]);
+  const sourceProjects = apiProjects;
 
   const categoryProjects = sourceProjects
     .map((project) => ({

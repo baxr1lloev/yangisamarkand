@@ -156,7 +156,7 @@ export default function ProjectsPageClient() {
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-text-main dark:text-white leading-tight">
                     {featuredProject?.name ||
                       t.sections.projects.empoweringTitle ||
-                      "Empowering the Next Generation of Innovators"}
+                      "Active Projects"}
                   </h2>
                   {featuredProject ? (
                     <div
@@ -166,7 +166,7 @@ export default function ProjectsPageClient() {
                   ) : (
                     <p className="text-text-muted dark:text-gray-400 text-lg leading-relaxed">
                       {t.sections.projects.empoweringDesc ||
-                        "Our startup incubator provides seed funding, mentorship, and workspace for young entrepreneurs in Samarkand."}
+                        "Active projects of the Public Consultative Council are initiatives started by the Council Board and operating in real time."}
                     </p>
                   )}
                 </div>

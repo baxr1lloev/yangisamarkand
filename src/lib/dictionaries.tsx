@@ -62,10 +62,10 @@ export const dictionaries = {
     },
     sections: {
       projects: {
-        badge: "Annual Report 2024",
-        title: "Building Our Future",
+        badge: "Projects",
+        title: "Active Projects",
         subtitle:
-          "Explore the initiatives driving social, scientific, and economic growth in Samarkand. We are investing in the next generation of leaders.",
+          "Active projects of the Public Consultative Council are initiatives started by the Council Board and operating in real time. The main goal of the projects is to create a favorable business environment, find ways to solve problems that hinder entrepreneurship, support youth startups and scientific developments, and support small and youth entrepreneurship.",
         buttons: {
           all: "View All Projects",
           submit: "Submit Proposal",
@@ -83,13 +83,13 @@ export const dictionaries = {
           startups: "Youth Startups",
         },
         innovationHub: "Innovation Hub",
-        empoweringTitle: "Empowering the Next Generation of Innovators",
+        empoweringTitle: "Active Projects",
         empoweringDesc:
-          "Our startup incubator provides seed funding, mentorship, and workspace for young entrepreneurs in Samarkand. Watch the highlights from our 2023 Demo Day.",
+          "Active projects of the Public Consultative Council are initiatives started by the Council Board and operating in real time.",
         activeProjects: "Active Projects",
         completedProjects: "Completed Projects",
         completedProjectsDesc:
-          "Projects initiated by the Board and/or members, fully completed within our initiatives. These were funded by Council support, personal contributions from members, or joint efforts of entrepreneurs.",
+          "Implemented projects of the Public Consultative Council are initiatives started by the Council Board and/or members and fully completed within the initiatives. In this section, you can view projects implemented through financial support from the Council, personal support from its members, or joint efforts of entrepreneurs through their own contributions.",
         viewArchive: "View Archive",
         viewProfile: "View Profile",
         active: "Active",
@@ -313,90 +313,6 @@ export const dictionaries = {
       privacy: "Privacy Policy",
       terms: "Terms of Service",
     },
-    // Active projects data
-    activeProjectsData: [
-      {
-        id: 1,
-        name: "Youth Startup & Scientific Research Support",
-        tag: "Startups & Science",
-        desc: "The Council reviews youth startups and scientific projects for innovation and demand, presents them at Council meetings, where entrepreneurs receive support and funding.",
-        fullDesc:
-          "The country is conducting large-scale work to improve the knowledge and skills of youth, fully supporting scientific research. Youth knowledge and scientific work is directed towards innovations and startups. However, they do not always receive organizational and financial support to launch their projects and commercialize developments.\n\nThe Public Consultative Council of Entrepreneurs has experience supporting youth startups and scientific research. The mechanism is that the Board accepts and reviews youth startups and scientific projects for their novelty and demand, after which they are presented at Council meetings. Applicants prepare their presentations and invite entrepreneurs to support the project. Upon unanimous approval, the project receives funding either directly from the interested entrepreneur or from the Council budget. The Council executive office monitors the targeted use of allocated funds and full project implementation.",
-        expectedResults:
-          "Youth startups and scientific research will receive funding, society will gain an innovative project, and the public climate will improve in terms of striving to initiate innovative and socially needed projects.",
-        active: true,
-        category: "startups",
-      },
-      {
-        id: 2,
-        name: "HR Club — HR Specialists Club",
-        tag: "HR & Employment",
-        desc: "Creating a coordination system for employment of graduates, job seekers, and targeted placement of employer vacancy information through a Telegram channel and offline meetings.",
-        fullDesc:
-          'The shortage of specialists is felt at every enterprise — both management and working professionals. There are no fully-fledged services like employment agencies in the entrepreneurial infrastructure. At the same time, most graduates do not have complete information about vacancies at enterprises.\n\nThe solution is to create a coordination system for employment of graduates, job search by citizens, and targeted placement of employer vacancy information through the "HR Specialists Club". A Telegram channel is created inviting HR department managers and specialists, posting employer vacancies and employment offers from educational institutions. Each post includes contacts for interested parties, starting a direct dialogue. Offline meetings include targeted seminars, discussions, and meetings with labor law supervisory representatives.',
-        expectedResults:
-          "HR managers will have direct access to educational institution databases. Enterprises will fill vacancies while educational institutions will place their graduates. Club meetings will create conditions for discussing training, retraining, and employment issues.",
-        active: true,
-        category: "social",
-        telegramLink: "https://t.me/+uCaLUvamo6pkMDJi",
-      },
-      {
-        id: 3,
-        name: "Accountants, Auditors & Tax Consultants Club",
-        tag: "Finance & Accounting",
-        desc: "A professional community for accountants, auditors, and tax consultants to share knowledge, discuss regulatory changes, and provide mutual support.",
-        fullDesc:
-          "The Accountants, Auditors, and Tax Consultants Club is a professional community created under the Public Consultative Council. The club brings together financial professionals from across the Samarkand region to share best practices, discuss regulatory changes, and provide mutual support.\n\nThe club organizes regular meetings, seminars, and training sessions on current topics in accounting, auditing, and tax legislation. Members gain access to expert consultations and networking opportunities with colleagues.",
-        expectedResults:
-          "Financial professionals will have a platform for knowledge exchange, stay up-to-date with regulatory changes, and build a professional network that strengthens the business infrastructure of the region.",
-        active: true,
-        category: "scientific",
-      },
-      {
-        id: 4,
-        name: "Uz Made — Episode 1: Urgut Sanoat Servis",
-        tag: "Manufacturing",
-        desc: "Urgut Sanoat Servis, a family enterprise in Urgut district of Samarkand region, manufactures and exports a diverse range of locally-made products, showcasing the potential of Samarkand's industrial sector.",
-        fullDesc: "Urgut Sanoat Servis is a family-run enterprise located in Urgut district of Samarkand region. This company exemplifies the spirit of local entrepreneurship — producing high-quality goods for both domestic and international markets. The 'Uz Made' project was launched to highlight exactly these kinds of success stories: local manufacturers who are quietly building competitive enterprises in the heart of Uzbekistan.\n\nThe enterprise manufactures a range of products using modern equipment and processes, providing jobs for local residents and contributing to the economic development of the Samarkand region. Their experience and growth story serves as inspiration for aspiring entrepreneurs across the country.",
-        expectedResults: "Growing awareness of locally-made Samarkand products, increased interest from potential business partners and investors, and inspiration for other local entrepreneurs to scale their businesses.",
-        active: true,
-        category: "uzMade",
-        youtubeId: "SmPNYkjfGbY",
-      },
-      {
-        id: 5,
-        name: "Uz Made — Episode 2: PE/PPR Pipe Manufacturer",
-        tag: "Industry",
-        desc: "A modern pipe manufacturing company in the Urgut Free Economic Zone (Nurobod), producing 500+ types of PE (polyethylene) and PPR (polypropylene) products for construction and infrastructure.",
-        fullDesc: "Located in the 'Sazag'on' residential area of the Urgut Free Economic Zone in Nurobod district, this enterprise produces over 500 types of PE (polyethylene) and PPR (polypropylene) pipes and fittings. These materials are essential for construction, plumbing, heating, and irrigation systems across Uzbekistan.\n\nLeveraging modern production technologies and a location within a special economic zone, the company benefits from favorable business conditions to scale rapidly. Their product range competes effectively with imported alternatives, saving foreign currency for the national economy while creating stable employment in the Samarkand region.",
-        expectedResults: "Increased domestic production of essential construction materials, reduced dependence on imports, job creation within the Urgut Free Economic Zone, and strengthened industrial capacity of the Samarkand region.",
-        active: true,
-        category: "uzMade",
-        youtubeId: "cC49-4kI3QE",
-      },
-      {
-        id: 6,
-        name: "Uz Made — Episode 3: STEKLOPLASTIK LLC",
-        tag: "Export",
-        desc: "STEKLOPLASTIK LLC produces 600+ cutting-edge products and exports to Turkey, Germany, Austria, Italy, Russia, China, Taiwan, and other countries — a shining example of Samarkand's global export potential.",
-        fullDesc: "STEKLOPLASTIK LLC is one of Samarkand's most internationally successful manufacturers. The company produces over 600 modern products utilizing fiberglass (stekloplastik) technology, which is renowned for its strength, lightness, and corrosion resistance.\n\nTheir products are exported to more than 10 countries including Turkey, Germany, Austria, Italy, Russia, China, and Taiwan — demonstrating that Samarkand-based manufacturers can compete on the global stage. The company's success story highlights the importance of innovative materials and export-oriented production strategies that are central to Uzbekistan's economic development goals.",
-        expectedResults: "Expansion of Samarkand's export geography, increased foreign currency earnings, technology transfer and international best practice adoption, and positioning of Samarkand as a hub for advanced manufacturing.",
-        active: true,
-        category: "uzMade",
-        youtubeId: "03vhj8UMlZY",
-      },
-      {
-        id: 7,
-        name: "Uz Made — Episode 4: Samarkand Golden Chickpeas",
-        tag: "Agri-Export",
-        desc: "SAMARKAND GOLDEN CHICKPEAS exports roasted chickpeas and dried fruits to 10+ countries worldwide, leveraging Samarkand's fertile lands and agricultural traditions to build a globally recognized brand.",
-        fullDesc: "SAMARKAND GOLDEN CHICKPEAS is a prime example of how Samarkand's rich agricultural heritage can be transformed into a globally competitive export business. The company specializes in the production, processing, and export of roasted chickpeas and various dried fruits.\n\nCurrently, their products reach over 10 foreign countries, making them one of the region's most successful agri-export businesses. By combining traditional Uzbek agricultural knowledge with modern processing and packaging technologies, they have built a brand that resonates with international buyers seeking premium quality dried goods.\n\nThe company creates significant employment in the agricultural sector and supports local farmers by providing a reliable and profitable market for their produce.",
-        expectedResults: "Growth in Samarkand's agricultural exports, stronger international recognition of Uzbek food products, increased farmer incomes through stable purchase agreements, and development of the region's food processing industry.",
-        active: true,
-        category: "uzMade",
-        youtubeId: "PtcZktMJcaY",
-      },
-    ],
   },
   ru: {
     nav: {
@@ -460,10 +376,10 @@ export const dictionaries = {
     },
     sections: {
       projects: {
-        badge: "Годовой Отчет 2024",
-        title: "Строим Наше Будущее",
+        badge: "Проекты",
+        title: "Действующие проекты",
         subtitle:
-          "Изучите инициативы, способствующие социальному, научному и экономическому росту Самарканда. Мы инвестируем в следующее поколение лидеров.",
+          "Действующие проекты Общественного Консультативного Совета – этот инициированные Правлением Совета и действующее в реальном масштабе времени. Основная цель проектов – создавать благоприятную среду для  ведения бизнеса, найти пути решения проблем, препятствующих  развитию предпринимательства, оказывать поддержку молодежных стартапов и научных разработок ученых, поддержка малого и молодежного предпринимательства.",
         buttons: {
           all: "Все Проекты",
           submit: "Подать Заявку",
@@ -481,13 +397,13 @@ export const dictionaries = {
           startups: "Молодежные Стартапы",
         },
         innovationHub: "Инновационный Хаб",
-        empoweringTitle: "Поддержка Нового Поколения Инноваторов",
+        empoweringTitle: "Действующие проекты",
         empoweringDesc:
-          "Наш инкубатор стартапов обеспечивает начальное финансирование, менторство и рабочее пространство для молодых предпринимателей Самарканда. Смотрите лучшие моменты нашего Демо-дня 2023.",
+          "Действующие проекты Общественного Консультативного Совета – этот инициированные Правлением Совета и действующее в реальном масштабе времени.",
         activeProjects: "Действующие Проекты",
         completedProjects: "Реализованные Проекты",
         completedProjectsDesc:
-          "Проекты, инициированные Правлением Совета и/или членами и полностью осуществлённые. Реализованы за счёт финансовой поддержки Совета, персональной поддержки его членов либо совместных усилий предпринимателей.",
+          "Реализованные проекты Общественного Консультативного Совета – этот инициированные Правлением Совета и/или членами и полнсоть осуществленные в рамках инициатив. В составе реализованных проектов вы можете наблюдать за проектами, которые реализваны за счет финансовой поддержки Совета, или за счет персональной поддержки его членов, либо осуществленные совместными усилиями предпринимателей за счет их собственных вкладов.",
         viewArchive: "Смотреть Архив",
         viewProfile: "Профиль",
         active: "Активен",
@@ -711,89 +627,6 @@ export const dictionaries = {
       privacy: "Политика конфиденциальности",
       terms: "Условия использования",
     },
-    activeProjectsData: [
-      {
-        id: 1,
-        name: "Поддержка молодёжных стартапов и научных разработок",
-        tag: "Стартапы и Наука",
-        desc: "Совет рассматривает молодёжные стартапы и научные проекты на предмет новшества и востребованности, представляет их на заседаниях Совета, где предприниматели оказывают поддержку и финансирование.",
-        fullDesc:
-          "В стране ведётся широкомасштабная работа по повышению уровня знаний и навыков молодёжи, всемерно поддерживаются научные поиски учёных. Знания молодёжи и научных работников направляются на инновации, стартапы. В то же время, не всегда они получают организационную и финансовую поддержку для запуска своих проектов и коммерциализации разработок.\n\nОбщественный Консультативный Совет Предпринимателей имеет опыт поддержки молодёжных стартапов и научных разработок. Механизм таков, что Правлением Совета принимаются и рассматриваются молодёжные стартапы и научные разработки на предмет их новшества и востребованности, после чего они выносятся на заседания Совета. Соискатели поддержки готовят свои презентации и призывают предпринимателей поддержать проект.",
-        expectedResults:
-          "Молодёжные стартапы и научные разработки учёных получат финансирование, общество получит инновационный проект, улучшится общественный климат.",
-        active: true,
-        category: "startups",
-      },
-      {
-        id: 2,
-        name: "HR-Клуб — Клуб HR-специалистов",
-        tag: "HR и Трудоустройство",
-        desc: "Создание системы координации работ по трудоустройству выпускников, поиска работы и целевого размещения информации о вакансиях через Telegram-канал и офлайн-встречи.",
-        fullDesc:
-          "Недостаток специалистов ощущается на каждом предприятии. В предпринимательской инфраструктуре нет полноценных услуг типа кадрового агентства. Основная часть выпускников не имеют полной информации о вакансиях на предприятиях.\n\nНеобходимо создать Telegram-канал с приглашением руководителей и специалистов HR-отделов, размещать вакансии работодателей и предложения по трудоустройству от образовательных учреждений. В рамках офлайн встреч будут организованы семинары, обсуждения, встречи с представителями надзорных органов трудового законодательства.",
-        expectedResults:
-          "Руководители HR-отделов будут иметь прямой доступ к базе данных образовательных учреждений. Предприятия будут закрывать вакансии, а учебные заведения трудоустроят своих выпускников.",
-        active: true,
-        category: "social",
-        telegramLink: "https://t.me/+uCaLUvamo6pkMDJi",
-      },
-      {
-        id: 3,
-        name: "Клуб Бухгалтеров, Аудиторов и Налоговых Консультантов",
-        tag: "Финансы и Учёт",
-        desc: "Профессиональное сообщество для обмена знаниями, обсуждения нормативных изменений и взаимной поддержки.",
-        fullDesc:
-          "Клуб Бухгалтеров, Аудиторов и Налоговых Консультантов — профессиональное сообщество, созданное при Общественном Консультативном Совете. Клуб объединяет финансовых специалистов Самаркандской области для обмена лучшими практиками и обсуждения нормативных изменений.\n\nКлуб организует регулярные встречи, семинары и тренинги по актуальным вопросам бухгалтерского учёта, аудита и налогового законодательства.",
-        expectedResults:
-          "Финансовые специалисты получат платформу для обмена знаниями и профессионального нетворкинга, укрепляющего бизнес-инфраструктуру региона.",
-        active: true,
-        category: "scientific",
-      },
-      {
-        id: 4,
-        name: "Uz Made — Выпуск 1: Urgut Sanoat Servis",
-        tag: "Производство",
-        desc: "Семейное предприятие Urgut Sanoat Servis в Ургутском районе Самаркандской области производит и экспортирует широкий ассортимент местной продукции, демонстрируя потенциал промышленного сектора Самарканда.",
-        fullDesc: "Urgut Sanoat Servis — семейное предприятие, расположенное в Ургутском районе Самаркандской области. Компания олицетворяет дух местного предпринимательства — производит высококачественную продукцию для внутреннего и международных рынков. Проект 'Uz Made' был создан именно для того, чтобы освещать подобные истории успеха местных производителей.\n\nПредприятие производит широкий ассортимент продуктов с использованием современного оборудования, обеспечивая рабочие места для местных жителей и вносит вклад в экономическое развитие Самаркандского региона.",
-        expectedResults: "Рост осведомлённости о самаркандской продукции местного производства, привлечение потенциальных деловых партнёров и инвесторов.",
-        active: true,
-        category: "uzMade",
-        youtubeId: "SmPNYkjfGbY",
-      },
-      {
-        id: 5,
-        name: "Uz Made — Выпуск 2: Производитель труб PE/PPR",
-        tag: "Промышленность",
-        desc: "Современное предприятие по производству труб в СЭЗ 'Ургут' (Нуробод) производит 500+ видов изделий из полиэтилена (PE) и полипропилена (PPR) для строительства и инфраструктуры.",
-        fullDesc: "Расположенное в массиве 'Сазагон' свободной экономической зоны 'Ургут' Нурободского района, предприятие производит более 500 видов труб и фитингов из полиэтилена (PE) и полипропилена (PPR). Эти материалы необходимы для строительства, сантехники, отопления и ирригационных систем по всему Узбекистану.\n\nИспользуя современные производственные технологии и расположение в особой экономической зоне, компания быстро масштабируется. Их продукция конкурентоспособно заменяет импортные аналоги.",
-        expectedResults: "Увеличение отечественного производства строительных материалов, снижение зависимости от импорта, создание рабочих мест в СЭЗ Ургут.",
-        active: true,
-        category: "uzMade",
-        youtubeId: "cC49-4kI3QE",
-      },
-      {
-        id: 6,
-        name: "Uz Made — Выпуск 3: STEKLOPLASTIK ООО",
-        tag: "Экспорт",
-        desc: "Компания STEKLOPLASTIK производит 600+ современных изделий и экспортирует в Турцию, Германию, Австрию, Италию, Россию, Китай, Тайвань — яркий пример глобального экспортного потенциала Самарканда.",
-        fullDesc: "STEKLOPLASTIK ООО — один из наиболее успешных международных производителей Самарканда. Компания производит более 600 современных изделий с использованием технологии стеклопластика, известного своей прочностью, лёгкостью и коррозионной стойкостью.\n\nИх продукция экспортируется более чем в 10 стран, включая Турцию, Германию, Австрию, Италию, Россию, Китай и Тайвань, демонстрируя, что самаркандские производители способны конкурировать на мировом рынке.",
-        expectedResults: "Расширение географии экспорта Самарканда, увеличение валютных поступлений, позиционирование Самарканда как центра передового производства.",
-        active: true,
-        category: "uzMade",
-        youtubeId: "03vhj8UMlZY",
-      },
-      {
-        id: 7,
-        name: "Uz Made — Выпуск 4: Samarkand Golden Chickpeas",
-        tag: "Агроэкспорт",
-        desc: "SAMARKAND GOLDEN CHICKPEAS экспортирует жареный нут и сухофрукты в 10+ стран мира, используя плодородные земли Самарканда для создания глобально признанного бренда.",
-        fullDesc: "SAMARKAND GOLDEN CHICKPEAS — наглядный пример того, как богатое сельскохозяйственное наследие Самарканда можно превратить в глобально конкурентоспособный экспортный бизнес. Компания специализируется на производстве, переработке и экспорте жареного нута и различных сухофруктов.\n\nВ настоящее время их продукция поставляется более чем в 10 зарубежных стран. Сочетая традиционные сельскохозяйственные знания с современными технологиями переработки и упаковки, они создали бренд, пользующийся спросом среди международных покупателей.",
-        expectedResults: "Рост сельскохозяйственного экспорта Самарканда, повышение доходов фермеров, развитие перерабатывающей промышленности региона.",
-        active: true,
-        category: "uzMade",
-        youtubeId: "PtcZktMJcaY",
-      },
-    ],
   },
   uz: {
     nav: {
@@ -858,10 +691,10 @@ export const dictionaries = {
     },
     sections: {
       projects: {
-        badge: "Yillik Hisobot 2024",
-        title: "Kelajagimizni Quramiz",
+        badge: "Loyihalar",
+        title: "Amaldagi loyihalar",
         subtitle:
-          "Samarqandning ijtimoiy, ilmiy va iqtisodiy o'sishiga turtki bo'layotgan tashabbuslar bilan tanishing. Biz kelajak liderlariga sarmoya kiritmoqdamiz.",
+          "Jamoatchilik maslahat kengashining amaldagi loyihalari Kengash boshqaruvi tomonidan boshlangan va real vaqt rejimida faoliyat yuritayotgan tashabbuslardir. Loyihalarning asosiy maqsadi biznes yuritish uchun qulay muhit yaratish, tadbirkorlik rivojiga to'sqinlik qilayotgan muammolar yechimini topish, yoshlar startaplari va olimlarning ilmiy ishlanmalarini qo'llab-quvvatlash, kichik va yoshlar tadbirkorligini qo'llab-quvvatlashdan iborat.",
         buttons: {
           all: "Barcha Loyihalar",
           submit: "Taklif Yuborish",
@@ -879,13 +712,13 @@ export const dictionaries = {
           startups: "Yoshlar Startaplari",
         },
         innovationHub: "Innovatsiya Markazi",
-        empoweringTitle: "Yangi Avlod Innovatorlarini Qo'llab-quvvatlash",
+        empoweringTitle: "Amaldagi loyihalar",
         empoweringDesc:
-          "Bizning startap inkubatorimiz Samarqandlik yosh tadbirkorlarga boshlang'ich mablag', mentorlik va ish maydoni bilan ta'minlaydi. 2023 Demo Kunimizdan eng yaxshi lahzalarni tomosha qiling.",
+          "Jamoatchilik maslahat kengashining amaldagi loyihalari Kengash boshqaruvi tomonidan boshlangan va real vaqt rejimida faoliyat yuritayotgan tashabbuslardir.",
         activeProjects: "Faol Loyihalar",
         completedProjects: "Amalga Oshirilgan Loyihalar",
         completedProjectsDesc:
-          "Kengash Boshqaruvi va/yoki a'zolari tomonidan boshlangan va to'liq amalga oshirilgan loyihalar.",
+          "Jamoatchilik maslahat kengashining amalga oshirilgan loyihalari Kengash boshqaruvi va/yoki a'zolari tomonidan boshlangan hamda tashabbuslar doirasida to'liq amalga oshirilgan loyihalardir. Ushbu bo'limda Kengashning moliyaviy ko'magi, uning a'zolarining shaxsiy qo'llab-quvvatlashi yoki tadbirkorlarning o'z hissalari hisobidan birgalikdagi sa'y-harakatlari bilan amalga oshirilgan loyihalarni ko'rishingiz mumkin.",
         viewArchive: "Arxivni Ko'rish",
         viewProfile: "Profilni Ko'rish",
         active: "Faol",
@@ -1106,88 +939,5 @@ export const dictionaries = {
       privacy: "Maxfiylik Siyosati",
       terms: "Foydalanish Shartlari",
     },
-    activeProjectsData: [
-      {
-        id: 1,
-        name: "Yoshlar startaplari va olimlar ilmiy ishlanmalarini qo'llab-quvvatlash",
-        tag: "Startaplar va Fan",
-        desc: "Kengash yoshlar startaplari va ilmiy loyihalarni yangilik va talabga ko'ra ko'rib chiqadi, Kengash yig'ilishlarida taqdim etadi, tadbirkorlar qo'llab-quvvatlaydi.",
-        fullDesc:
-          "Mamlakatda yoshlarning bilim va ko'nikmalarini oshirish bo'yicha keng ko'lamli ishlar olib borilmoqda. Yoshlar va ilmiy xodimlarning bilimlari innovatsiyalar va startaplarga yo'naltirilmoqda. Shu bilan birga, ular har doim ham loyihalarini ishga tushirish uchun tashkiliy va moliyaviy yordam ololmaydi.\n\nKengash yoshlar startaplari va ilmiy ishlanmalarni qo'llab-quvvatlash tajribasiga ega. Boshqaruv kengashi yoshlar startaplari va ilmiy ishlanmalarni yangilik va talabga ko'ra qabul qiladi va ko'rib chiqadi.",
-        expectedResults:
-          "Yoshlar startaplari va olimlarning ilmiy ishlanmalari moliyalashtirish oladi, jamiyat innovatsion loyihaga ega bo'ladi.",
-        active: true,
-        category: "startups",
-      },
-      {
-        id: 2,
-        name: "HR-Klub — HR-mutaxassislar Klubi",
-        tag: "HR va Bandlik",
-        desc: "Bitiruvchilarni ishga joylashtirish, ish qidirish va ish beruvchilar vakansiyalari haqida ma'lumotni maqsadli joylashtirish tizimini yaratish.",
-        fullDesc:
-          "Har bir korxonada mutaxassislar yetishmasligi sezilmoqda. Tadbirkorlik infratuzilmasida kadrlar agentligi kabi to'laqonli xizmatlar yo'q. Bitiruvchilarning asosiy qismi korxonalardagi vakansiyalar haqida to'liq ma'lumotga ega emas.\n\nHR bo'limlar rahbarlari va mutaxassislarini taklif qilib Telegram kanal yaratish, ish beruvchilar vakansiyalarini va ta'lim muassasalaridan ish joylashtirish takliflarini joylashtirish kerak.",
-        expectedResults:
-          "HR bo'lim rahbarlari ta'lim muassasalari ma'lumotlar bazasiga to'g'ridan-to'g'ri kirish imkoniyatiga ega bo'ladi. Korxonalar vakansiyalarni yopadi.",
-        active: true,
-        category: "social",
-        telegramLink: "https://t.me/+uCaLUvamo6pkMDJi",
-      },
-      {
-        id: 3,
-        name: "Buxgalterlar, Auditorlar va Soliq Maslahatchilari Klubi",
-        tag: "Moliya va Hisobdorlik",
-        desc: "Bilim almashish, me'yoriy o'zgarishlarni muhokama qilish va o'zaro qo'llab-quvvatlash uchun professional hamjamiyat.",
-        fullDesc:
-          "Buxgalterlar, Auditorlar va Soliq Maslahatchilari Klubi — Jamoatchilik Konsultativ Kengashi qoshida yaratilgan professional hamjamiyat. Klub Samarqand viloyati bo'ylab moliya mutaxassislarini birlashtiradi.\n\nKlub buxgalteriya hisobi, audit va soliq qonunchiligi bo'yicha dolzarb mavzularda muntazam uchrashuvlar, seminarlar va treninglar tashkil etadi.",
-        expectedResults:
-          "Moliya mutaxassislari bilim almashish va professional tarmoq yaratish uchun platformaga ega bo'ladi.",
-        active: true,
-        category: "scientific",
-      },
-      {
-        id: 4,
-        name: "Uz Made — 1-son: Urgut Sanoat Servis",
-        tag: "Ishlab chiqarish",
-        desc: "Samarqand viloyati Urgut tumanidagi Urgut Sanoat Servis oilaviy korxonasi mahalliy ishlab chiqarilgan mahsulotlarning keng assortimentini ishlab chiqaradi va eksport qiladi.",
-        fullDesc: "Urgut Sanoat Servis — Samarqand viloyatining Urgut tumanida joylashgan oilaviy korxona. Bu kompaniya mahalliy tadbirkorlik ruhini mujassam etadi — ichki va xalqaro bozorlar uchun yuqori sifatli mahsulotlar ishlab chiqaradi. 'Uz Made' loyihasi aynan shunday muvaffaqiyat hikoyalarini — O'zbekiston yuragida raqobatbardosh korxonalar barpo etayotgan mahalliy ishlab chiqaruvchilarni yoritish uchun yaratilgan.\n\nKorxona zamonaviy uskunalar yordamida turli xil mahsulotlar ishlab chiqaradi, mahalliy aholini ish bilan ta'minlaydi va Samarqand viloyatining iqtisodiy rivojlanishiga hissa qo'shadi.",
-        expectedResults: "Samarqand mahalliy ishlab chiqarilgan mahsulotlari haqida xabardorlikning oshishi, potentsial biznes hamkorlari va investorlarni jalb qilish.",
-        active: true,
-        category: "uzMade",
-        youtubeId: "SmPNYkjfGbY",
-      },
-      {
-        id: 5,
-        name: "Uz Made — 2-son: PE/PPR quvur ishlab chiqaruvchi",
-        tag: "Sanoat",
-        desc: "Nurobod tumani 'Urgut' EIZ 'Sazag'on' massividagi zamonaviy korxona qurilish va infratuzilma uchun 500+ turdagi PE (polietilen) va PPR (polipropilen) mahsulotlari ishlab chiqaradi.",
-        fullDesc: "Nurobod tumani 'Urgut' erkin iqtisodiy zonasining 'Sazag'on' massivida joylashgan bu korxona 500 dan ortiq turdagi PE (polietilen) va PPR (polipropilen) quvur va fitinglar ishlab chiqaradi. Bu materiallar qurilish, santexnika, isitish va sug'orish tizimlarida nihoyatda zarur.\n\nZamonaviy ishlab chiqarish texnologiyalaridan foydalanib va maxsus iqtisodiy zonadagi qulay sharoitlarda faoliyat yuritib, kompaniya tez sur'atda rivojlanmoqda. Ularning mahsulotlari import analoglari bilan raqobatbardosh tarzda ta'minlanmoqda.",
-        expectedResults: "Qurilish materiallari ichki ishlab chiqarishini oshirish, importga bog'liqlikni kamaytirish, Urgut EIZda ish o'rinlari yaratish.",
-        active: true,
-        category: "uzMade",
-        youtubeId: "cC49-4kI3QE",
-      },
-      {
-        id: 6,
-        name: "Uz Made — 3-son: STEKLOPLASTIK MCHJ",
-        tag: "Eksport",
-        desc: "STEKLOPLASTIK MCHJ 600+ zamonaviy mahsulot ishlab chiqaradi va Turkiya, Germaniya, Avstriya, Italiya, Rossiya, Xitoy, Tayvan va boshqa mamlakatlarga eksport qiladi.",
-        fullDesc: "STEKLOPLASTIK MCHJ — Samarqandning xalqaro miqyosda eng muvaffaqiyatli ishlab chiqaruvchilaridan biri. Kompaniya mustahkamligi, yengilligi va korroziyaga chidamliligi bilan mashhur bo'lgan shisha plastik (stekloplastik) texnologiyasidan foydalanib 600 dan ortiq zamonaviy mahsulot ishlab chiqaradi.\n\nUlarning mahsulotlari Turkiya, Germaniya, Avstriya, Italiya, Rossiya, Xitoy va Tayvan kabi 10 dan ortiq mamlakatga eksport qilinadi — bu Samarqand ishlab chiqaruvchilari jahon bozorida raqobat qila olishini ko'rsatadi.",
-        expectedResults: "Samarqand eksport geografiyasini kengaytirish, valyuta tushumlarini oshirish, Samarqandni ilg'or ishlab chiqarish markazi sifatida pozitsiyalash.",
-        active: true,
-        category: "uzMade",
-        youtubeId: "03vhj8UMlZY",
-      },
-      {
-        id: 7,
-        name: "Uz Made — 4-son: Samarkand Golden Chickpeas",
-        tag: "Agro-eksport",
-        desc: "SAMARKAND GOLDEN CHICKPEAS qovurilgan no'xat va quruq mevalarni dunyoning 10 dan ortiq mamlakatiga eksport qiladi — Samarqandning global tan olingan brendini yaratmoqda.",
-        fullDesc: "SAMARKAND GOLDEN CHICKPEAS — Samarqandning boy qishloq xo'jaligi merosini global raqobatbardosh eksport biznesiga aylantirish bo'yicha ajoyib misol. Kompaniya qovurilgan no'xat va turli quruq mevalar ishlab chiqarish, qayta ishlash va eksport qilishga ixtisoslashgan.\n\nHozirda ularning mahsulotlari 10 dan ortiq xorijiy mamlakatga yetib bormoqda. An'anaviy o'zbek qishloq xo'jaligi bilimlarini zamonaviy qayta ishlash va qadoqlash texnologiyalari bilan birlashtirgan holda, ular xalqaro xaridorlar orasida talabga ega brend yaratdilar.",
-        expectedResults: "Samarqand qishloq xo'jaligi eksportining o'sishi, fermerlar daromadlarining oshishi, mintaqaning oziq-ovqat qayta ishlash sanoatining rivojlanishi.",
-        active: true,
-        category: "uzMade",
-        youtubeId: "PtcZktMJcaY",
-      },
-    ],
   },
 };
