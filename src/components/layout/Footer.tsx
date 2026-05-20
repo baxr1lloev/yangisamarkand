@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
+import Logo from "@/components/ui/Logo";
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -12,17 +13,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* About */}
         <div className="col-span-1 md:col-span-2">
-          <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
-            <div className="size-10 rounded-lg overflow-hidden bg-white/10">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/logo/logo.png"
-                alt="Logo"
-                className="w-full h-full object-contain"
+          <div className="mb-4">
+            <Link href="/">
+              <Logo
+                iconSize="size-10"
+                textColor="text-white"
               />
-            </div>
-            YANGI SAMARQAND
-          </h3>
+            </Link>
+          </div>
           <p className="text-gray-400 text-sm leading-relaxed max-w-md">
             {t.footer.desc}
           </p>

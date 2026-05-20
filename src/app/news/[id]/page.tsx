@@ -3,8 +3,10 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { buildApiUrl } from '@/lib/api';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function NewsDetailPage() {
+  const { t, language } = useLanguage();
   const params = useParams();
   const id = Number(params.id);
   
@@ -33,14 +35,20 @@ export default function NewsDetailPage() {
   }, [id]);
 
   if (loading) {
-    return <div className="container mx-auto px-4 py-32 text-center text-xl mt-10 dark:text-white">Loading Article...</div>;
+    return (
+      <div className="container mx-auto px-4 py-32 text-center text-xl mt-10 dark:text-white">
+        {language === 'uz' ? "Maqola yuklanmoqda..." : language === 'ru' ? "Загрузка статьи..." : "Loading Article..."}
+      </div>
+    );
   }
 
   if (error || !article) {
     return (
       <div className="container mx-auto px-4 py-32 text-center text-xl mt-10 dark:text-white">
-        <h1 className="text-4xl font-bold mb-4">Article Not Found</h1>
-        <Link href="/news" className="text-primary hover:underline">Back to News</Link>
+        <h1 className="text-4xl font-bold mb-4">{t.newsSection.articleNotFound || "Article Not Found"}</h1>
+        <Link href="/news" className="text-primary hover:underline">
+          {t.newsSection.backToNews || "Back to News"}
+        </Link>
       </div>
     );
   }
@@ -69,7 +77,7 @@ export default function NewsDetailPage() {
       <div className="container mx-auto px-4 py-12 max-w-4xl">
         <Link href="/news" className="inline-flex items-center text-primary font-bold mb-8 hover:underline">
           <span className="material-symbols-outlined mr-2">arrow_back</span>
-          Back to All News
+          {t.newsSection.backToNews || "Back to All News"}
         </Link>
         
         <div 

@@ -106,6 +106,7 @@ export const dictionaries = {
         activeTab: "Active Projects",
         completedTab: "Completed Projects",
         backToMain: "Back to Home",
+        watchVideo: "Watch Video",
       },
       about: {
         philosophy: "Our Philosophy",
@@ -420,6 +421,7 @@ export const dictionaries = {
         activeTab: "Действующие Проекты",
         completedTab: "Реализованные Проекты",
         backToMain: "На главную",
+        watchVideo: "Смотреть видео",
       },
       about: {
         philosophy: "Наша Философия",
@@ -735,6 +737,7 @@ export const dictionaries = {
         activeTab: "Faol Loyihalar",
         completedTab: "Amalga Oshirilgan Loyihalar",
         backToMain: "Bosh sahifaga qaytish",
+        watchVideo: "Videoni ko'rish",
       },
       about: {
         philosophy: "Bizning Falsafa",

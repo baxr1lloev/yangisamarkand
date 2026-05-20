@@ -291,7 +291,7 @@ export default function ProjectsSection() {
                                     className="text-red-600 dark:text-red-400 font-bold text-sm hover:underline flex items-center gap-1 cursor-pointer"
                                   >
                                     <span className="material-symbols-outlined text-base">play_circle</span>
-                                    Watch Video
+                                    {t.sections.projects.watchVideo || "Watch Video"}
                                   </button>
                                 )}
                                 <Link
@@ -370,7 +370,7 @@ export default function ProjectsSection() {
                                     className="text-red-600 dark:text-red-400 font-bold text-sm hover:underline flex items-center gap-1 cursor-pointer"
                                   >
                                     <span className="material-symbols-outlined text-base">play_circle</span>
-                                    Watch Video
+                                    {t.sections.projects.watchVideo || "Watch Video"}
                                   </button>
                                 )}
                                 <Link

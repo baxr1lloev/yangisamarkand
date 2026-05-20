@@ -100,7 +100,7 @@ export default function ProjectsPageClient() {
               className="inline-flex items-center gap-2 text-sm font-semibold text-text-muted dark:text-gray-400 hover:text-primary transition-colors"
             >
               <span className="material-symbols-outlined text-base">arrow_back</span>
-              На главную
+              {t.sections.projects.backToMain || "Back to Home"}
             </Link>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
@@ -298,7 +298,7 @@ export default function ProjectsPageClient() {
                                     className="text-red-600 dark:text-red-400 font-bold text-sm hover:underline flex items-center gap-1"
                                   >
                                     <span className="material-symbols-outlined text-base">play_circle</span>
-                                    Watch Video
+                                    {t.sections.projects.watchVideo || "Watch Video"}
                                   </button>
                                   <Link
                                     href={`/projects/${project.id}`}
@@ -374,7 +374,7 @@ export default function ProjectsPageClient() {
                                     className="text-red-600 dark:text-red-400 font-bold text-sm hover:underline flex items-center gap-1"
                                   >
                                     <span className="material-symbols-outlined text-base">play_circle</span>
-                                    Watch Video
+                                    {t.sections.projects.watchVideo || "Watch Video"}
                                   </button>
                                   <Link
                                     href={`/projects/${project.id}`}

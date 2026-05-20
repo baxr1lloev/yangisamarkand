@@ -4,10 +4,12 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { buildApiUrl } from '@/lib/api';
+import { useLanguage } from '@/context/LanguageContext';
 
 const ITEMS_PER_PAGE = 3;
 
 export default function NewsPage() {
+  const { t } = useLanguage();
   const [filter, setFilter] = useState('All News');
   const [currentPage, setCurrentPage] = useState(1);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -62,10 +64,14 @@ export default function NewsPage() {
           className="inline-flex items-center gap-2 text-sm font-semibold text-text-muted dark:text-gray-400 hover:text-primary transition-colors"
         >
           <span className="material-symbols-outlined text-base">arrow_back</span>
-          На главную
+          {t.sections.projects.backToMain || "Back to Home"}
         </Link>
       </div>
-      <SectionHeading title="News &amp; Updates" subtitle="Latest Happenings in Samarkand" center />
+      <SectionHeading 
+        title={t.newsSection.newsTitle || "News & Updates"} 
+        subtitle={t.newsSection.newsSubtitle || "Latest Happenings in Samarkand"} 
+        center 
+      />
       
       {/* Filters */}
       <div className="flex justify-center gap-4 mt-8 mb-12 flex-wrap">
@@ -79,7 +85,7 @@ export default function NewsPage() {
                 : 'bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 text-text-muted dark:text-gray-300 hover:border-primary hover:text-primary'
             }`}
           >
-            {cat}
+            {cat === 'All News' ? (t.newsSection.allNews || 'All News') : cat}
           </button>
         ))}
       </div>
@@ -116,7 +122,7 @@ export default function NewsPage() {
                      dangerouslySetInnerHTML={{ __html: item.description }}
                    />
                    <div className="text-primary font-bold text-sm flex items-center group-hover:gap-2 transition-all">
-                     Read Article <span className="material-symbols-outlined text-lg ml-1">arrow_forward</span>
+                     {t.newsSection.readArticle || "Read Article"} <span className="material-symbols-outlined text-lg ml-1">arrow_forward</span>
                    </div>
                  </div>
                </div>
