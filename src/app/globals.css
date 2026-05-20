@@ -218,3 +218,10 @@ html.lenis, html.lenis body {
 .dark .ckeditor-content td {
   background: rgba(255, 255, 255, 0.03);
 }
+
+/* ========== PARAGRAPH JUSTIFICATION ========== */
+
+p {
+  text-align: justify;
+}
+

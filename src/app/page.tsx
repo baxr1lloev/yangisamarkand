@@ -36,7 +36,7 @@ export default function Home() {
       </section>
 
       {/* Quick Links - Samarkand Themed */}
-      <section className="relative z-20 -mt-12 px-4 md:px-10 max-w-6xl mx-auto">
+      <section className="relative z-20 py-16 md:py-20 px-4 md:px-10 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
           {[
             {

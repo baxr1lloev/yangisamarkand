@@ -11,21 +11,30 @@ const LangButton = ({
   lang,
   currentLang,
   setLang,
+  isScrolled,
 }: {
   lang: Locale;
   currentLang: string;
   setLang: (l: Locale) => void;
+  isScrolled: boolean;
 }) => {
   const isActive = currentLang === lang;
   
+  let textClass = "";
+  if (isScrolled) {
+    textClass = isActive
+      ? "text-primary dark:text-[#D49D60] font-bold"
+      : "text-slate-550 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+  } else {
+    textClass = isActive
+      ? "text-[#D49D60] font-bold"
+      : "text-white/80 hover:text-white";
+  }
+
   return (
     <button
       onClick={() => setLang(lang)}
-      className={`cursor-pointer transition-colors duration-300 ${
-        isActive 
-          ? "text-primary dark:text-[#D49D60] font-bold" 
-          : "text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-white"
-      }`}
+      className={`cursor-pointer transition-all duration-200 text-[13px] font-semibold tracking-wider ${textClass}`}
       aria-label={`Switch language to ${lang.toUpperCase()}`}
     >
       {lang.toUpperCase()}
@@ -52,7 +61,6 @@ export default function Header() {
       setIsDark(false);
       document.documentElement.classList.remove("dark");
     } else {
-      // Follow system preference
       const prefersDark = window.matchMedia(
         "(prefers-color-scheme: dark)",
       ).matches;
@@ -65,18 +73,14 @@ export default function Header() {
     }
   }, []);
 
-  // Scroll spy to update active section and scroll state
+  // Scroll spy
   useEffect(() => {
     const handleScrollState = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 20);
     };
     
     window.addEventListener("scroll", handleScrollState);
-    handleScrollState(); // initial run
+    handleScrollState();
 
     setActiveSection(window.location.hash);
 
@@ -147,170 +151,182 @@ export default function Header() {
     }
   };
 
+  // State-based dynamic styles
+  // When at top (not scrolled), we use transparent capsule directly overlaying the hero image
+  const headerContainerClass = isScrolled
+    ? "bg-white/95 dark:bg-[#111d21]/95 border-slate-200/60 dark:border-white/[0.08] shadow-md"
+    : "bg-slate-900/40 border-white/10 shadow-lg shadow-black/5";
+
+  const logoTextColor = isScrolled
+    ? "text-slate-900 dark:text-white"
+    : "text-white";
+
+  const dividerClass = isScrolled
+    ? "bg-slate-200 dark:bg-white/10"
+    : "bg-white/20";
+
+  const switcherContainerClass = isScrolled
+    ? "bg-slate-100/60 dark:bg-white/[0.04] border-slate-200/30 dark:border-white/5"
+    : "bg-white/10 border-white/10";
+
+  const switcherDividerColor = isScrolled
+    ? "text-slate-300 dark:text-white/10"
+    : "text-white/20";
+
+  const toggleBtnClass = isScrolled
+    ? "bg-slate-100 dark:bg-white/[0.05] border-slate-200/60 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-[#D49D60] hover:bg-slate-250 dark:hover:bg-white/10"
+    : "bg-white/10 border-white/10 text-white hover:text-[#D49D60] hover:bg-white/20";
+
   return (
-    <header className="sticky top-0 z-50 w-full transition-all duration-500 bg-white/80 dark:bg-[#111d21]/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-800/50 shadow-sm">
-      <div 
-        className={`px-4 md:px-10 flex items-center justify-between max-w-[1280px] mx-auto transition-all duration-500 ${
-          isScrolled ? "py-2.5" : "py-4 md:py-5"
-        }`}
+    <div className="fixed top-0 left-0 right-0 z-50 w-full px-4 md:px-8 py-4 transition-all duration-300 pointer-events-none">
+      <header
+        className={`mx-auto max-w-[1280px] rounded-2xl border backdrop-blur-md transition-all duration-500 pointer-events-auto ${headerContainerClass}`}
       >
-        {/* Logo Section */}
-        <Link href="/" className="group">
-          <Logo iconSize={isScrolled ? "size-9" : "size-11"} />
-        </Link>
+        <div className="px-5 py-3 md:py-3.5 flex items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="group">
+            <Logo
+              iconSize="size-9"
+              textColor={logoTextColor}
+            />
+          </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-8">
-          <nav className="flex items-center gap-1.5">
-            {navItems.map((item) => {
-              const hash = item.path.substring(item.path.indexOf("#"));
-              const sectionId = hash.replace("#", "");
-              const isActive = pathname === "/" 
-                ? activeSection === hash
-                : pathname.startsWith(`/${sectionId}`);
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-6">
+            <nav className="flex items-center gap-1">
+              {navItems.map((item) => {
+                const hash = item.path.substring(item.path.indexOf("#"));
+                const sectionId = hash.replace("#", "");
+                const isActive =
+                  pathname === "/"
+                    ? activeSection === hash
+                    : pathname.startsWith(`/${sectionId}`);
+
+                let navTextClass = "";
+                let indicatorColor = "";
                 
-              const activeClass = "text-primary dark:text-[#D49D60] bg-primary/5 dark:bg-[#D49D60]/10 font-semibold";
-              const inactiveClass = "text-[#0e171b] dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-white/5";
+                if (isScrolled) {
+                  navTextClass = isActive
+                    ? "text-primary dark:text-[#D49D60] font-bold"
+                    : "text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white";
+                  indicatorColor = "bg-primary dark:bg-[#D49D60]";
+                } else {
+                  navTextClass = isActive
+                    ? "text-[#D49D60] font-bold"
+                    : "text-white/80 hover:text-white";
+                  indicatorColor = "bg-[#D49D60]";
+                }
 
-              return (
-                <a
-                  key={item.name}
-                  href={item.path}
-                  className={`text-sm font-semibold px-4 py-2 rounded-full transition-all duration-300 ${
-                    isActive ? activeClass : inactiveClass
-                  }`}
-                  onClick={(e) => handleScroll(e, item.path)}
-                >
-                  {item.name}
-                </a>
-              );
-            })}
-          </nav>
+                return (
+                  <a
+                    key={item.name}
+                    href={item.path}
+                    className={`relative text-[15.5px] font-semibold px-4 py-2 transition-all duration-200 ${navTextClass}`}
+                    onClick={(e) => handleScroll(e, item.path)}
+                  >
+                    {item.name}
+                    {/* Underline indicator */}
+                    <span
+                      className={`absolute bottom-0.5 left-4 right-4 h-[2px] rounded-full transition-all duration-200 ${indicatorColor} ${
+                        isActive ? "opacity-100 scale-100" : "opacity-0 scale-50"
+                      }`}
+                    />
+                  </a>
+                );
+              })}
+            </nav>
 
-          <div className="h-6 w-px bg-gray-200 dark:bg-gray-800 transition-colors duration-500"></div>
+            <div className={`h-5 w-px transition-colors duration-500 ${dividerClass}`} />
 
-          {/* Dark Mode Toggle + Language Switcher */}
-          <div className="flex items-center gap-5">
-            {/* Dark mode toggle */}
-            <button
-              onClick={toggleDarkMode}
-              className="size-9 rounded-full flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-[#D49D60] hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300"
-              aria-label="Toggle dark mode"
-            >
-              {isDark ? (
-                <Sun className="size-5 transition-transform duration-500 rotate-0 hover:rotate-45" />
-              ) : (
-                <Moon className="size-5 transition-transform duration-500 rotate-0 hover:-rotate-12" />
-              )}
-            </button>
+            {/* Right Controls */}
+            <div className="flex items-center gap-4">
+              {/* Language Switcher */}
+              <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full border transition-all duration-500 ${switcherContainerClass}`}>
+                <LangButton lang="uz" currentLang={language} setLang={setLanguage} isScrolled={isScrolled} />
+                <span className={`text-[10px] ${switcherDividerColor}`}>|</span>
+                <LangButton lang="ru" currentLang={language} setLang={setLanguage} isScrolled={isScrolled} />
+                <span className={`text-[10px] ${switcherDividerColor}`}>|</span>
+                <LangButton lang="en" currentLang={language} setLang={setLanguage} isScrolled={isScrolled} />
+              </div>
 
-            <div className="flex items-center gap-2 text-xs font-bold text-gray-500 dark:text-gray-400">
-              <LangButton
-                lang="uz"
-                currentLang={language}
-                setLang={setLanguage}
-              />
-              <span className="text-gray-300 dark:text-gray-700">|</span>
-              <LangButton
-                lang="ru"
-                currentLang={language}
-                setLang={setLanguage}
-              />
-              <span className="text-gray-300 dark:text-gray-700">|</span>
-              <LangButton
-                lang="en"
-                currentLang={language}
-                setLang={setLanguage}
-              />
+              {/* Dark Mode toggle */}
+              <button
+                onClick={toggleDarkMode}
+                className={`size-9 rounded-full flex items-center justify-center border transition-all duration-500 ${toggleBtnClass}`}
+                aria-label="Toggle dark mode"
+              >
+                {isDark ? (
+                  <Sun className="size-[17px]" />
+                ) : (
+                  <Moon className="size-[17px]" />
+                )}
+              </button>
             </div>
           </div>
+
+          {/* Mobile Menu Icon */}
+          <button
+            className={`lg:hidden p-2 rounded-xl transition-all duration-300 ${
+              isScrolled
+                ? "text-slate-800 dark:text-white hover:bg-slate-100 dark:hover:bg-white/5"
+                : "text-white hover:bg-white/10"
+            }`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
         </div>
 
-        {/* Mobile Menu Icon */}
-        <button
-          className="lg:hidden p-1.5 rounded-lg transition-all duration-300 text-[#0e171b] dark:text-white hover:bg-gray-100 dark:hover:bg-white/5"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? (
-            <X className="size-6" />
-          ) : (
-            <Menu className="size-6" />
-          )}
-        </button>
-      </div>
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden absolute top-full left-4 right-4 mt-2 bg-white/95 dark:bg-[#111d21]/95 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 rounded-2xl shadow-2xl py-4 px-5 flex flex-col gap-4">
+            <nav className="flex flex-col gap-1">
+              {navItems.map((item) => {
+                const hash = item.path.substring(item.path.indexOf("#"));
+                const sectionId = hash.replace("#", "");
+                const isActive =
+                  pathname === "/"
+                    ? activeSection === hash
+                    : pathname.startsWith(`/${sectionId}`);
+                return (
+                  <a
+                    key={item.name}
+                    href={item.path}
+                    className={`text-sm font-semibold px-4 py-2.5 rounded-xl transition-all duration-300 ${
+                      isActive
+                        ? "text-primary dark:text-[#D49D60] bg-slate-100 dark:bg-white/5 font-bold"
+                        : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/[0.02]"
+                    }`}
+                    onClick={(e) => handleScroll(e, item.path)}
+                  >
+                    {item.name}
+                  </a>
+                );
+              })}
+            </nav>
 
-      {/* Mobile Menu Dropdown */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-[#111d21]/95 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-800/50 shadow-2xl py-5 px-6 flex flex-col gap-5">
-          <nav className="flex flex-col gap-3.5">
-            {navItems.map((item) => {
-              const hash = item.path.substring(item.path.indexOf("#"));
-              const sectionId = hash.replace("#", "");
-              const isActive = pathname === "/" 
-                ? activeSection === hash
-                : pathname.startsWith(`/${sectionId}`);
-              return (
-                <a
-                  key={item.name}
-                  href={item.path}
-                  className={`text-sm font-semibold tracking-wide uppercase px-4 py-2.5 rounded-full transition-all duration-300 ${
-                    isActive
-                      ? "text-primary dark:text-[#D49D60] bg-primary/5 dark:bg-[#D49D60]/10 font-bold"
-                      : "text-[#0e171b] dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-white/5"
-                  }`}
-                  onClick={(e) => handleScroll(e, item.path)}
-                >
-                  {item.name}
-                </a>
-              );
-            })}
-          </nav>
+            <div className="h-px w-full bg-slate-150 dark:bg-white/5" />
 
-          <div className="h-px w-full bg-gray-100/80 dark:bg-gray-800/50"></div>
-
-          <div className="flex justify-between items-center px-2">
-            <div className="flex items-center gap-2 text-xs font-bold text-gray-500 dark:text-gray-400">
-              <LangButton
-                lang="uz"
-                currentLang={language}
-                setLang={setLanguage}
-              />
-              <span className="text-gray-300 dark:text-gray-700">|</span>
-              <LangButton
-                lang="ru"
-                currentLang={language}
-                setLang={setLanguage}
-              />
-              <span className="text-gray-300 dark:text-gray-700">|</span>
-              <LangButton
-                lang="en"
-                currentLang={language}
-                setLang={setLanguage}
-              />
+            <div className="flex justify-between items-center px-2">
+              <div className="flex items-center gap-2">
+                <LangButton lang="uz" currentLang={language} setLang={setLanguage} isScrolled={true} />
+                <span className="text-slate-300 dark:text-white/10">|</span>
+                <LangButton lang="ru" currentLang={language} setLang={setLanguage} isScrolled={true} />
+                <span className="text-slate-300 dark:text-white/10">|</span>
+                <LangButton lang="en" currentLang={language} setLang={setLanguage} isScrolled={true} />
+              </div>
+              <button
+                onClick={toggleDarkMode}
+                className="size-9 rounded-full flex items-center justify-center bg-slate-100 dark:bg-white/5"
+                aria-label="Toggle dark mode"
+              >
+                {isDark ? <Sun className="size-4.5" /> : <Moon className="size-4.5" />}
+              </button>
             </div>
-            {/* Mobile dark mode toggle */}
-            <button
-              onClick={toggleDarkMode}
-              className="size-9 rounded-full flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-[#D49D60] hover:bg-gray-100 dark:hover:bg-white/5 transition-all"
-              aria-label="Toggle dark mode"
-            >
-              {isDark ? (
-                <Sun className="size-5 transition-transform duration-500 rotate-0 hover:rotate-45" />
-              ) : (
-                <Moon className="size-5 transition-transform duration-500 rotate-0 hover:-rotate-12" />
-              )}
-            </button>
           </div>
-        </div>
-      )}
-
-      {/* Ambient warm gold glowing line */}
-      <div 
-        className={`absolute bottom-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-[#D49D60]/50 to-transparent transition-opacity duration-700 pointer-events-none ${
-          isScrolled ? "opacity-100" : "opacity-0"
-        }`} 
-      />
-    </header>
+        )}
+      </header>
+    </div>
   );
 }

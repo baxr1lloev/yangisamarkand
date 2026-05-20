@@ -45,10 +45,12 @@ export default function ScrollVideoHero() {
         className="absolute inset-0 w-full h-full pointer-events-none"
       >
         <Image
-          src="/images/hero/IMG_4331.jpg"
+          src="/images/hero/IMG_4335.jpg"
           alt="Yangi Samarqand Hero"
           fill
           priority
+          quality={100}
+          unoptimized
           className="object-cover"
         />
       </motion.div>

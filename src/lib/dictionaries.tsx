@@ -158,6 +158,7 @@ export const dictionaries = {
         membershipDesc:
           "Members of the Public Council may be domestic and foreign legal and physical persons who recognize the Fund's Charter, its goals, take an active part in the Council's activities, and voluntarily contribute monetary and property contributions.",
         membershipButton: "Apply for Membership",
+        membershipBenefitsTitle: "Benefits of Membership",
         membershipBenefits: [
           "A sense of pride in being part of a prestigious community of regional entrepreneurs",
           "Being a participant and part of socio-economic reforms and positive changes in the region",
@@ -472,6 +473,7 @@ export const dictionaries = {
         membershipDesc:
           "Членами (участниками) Общественного Совета могут быть отечественные и зарубежные юридические и физические лица, признающие Устав Фонда, его цели, принимающие активное участие в деятельности Общественного Совета, добровольно вносящие денежные и имущественные взносы.",
         membershipButton: "Подать заявку на членство",
+        membershipBenefitsTitle: "Преимущества членства",
         membershipBenefits: [
           "Чувство гордости быть в составе престижного сообщества предпринимателей региона",
           "Быть участником и частью социально-экономических реформ, позитивных изменений в регионе",
@@ -788,6 +790,7 @@ export const dictionaries = {
         membershipDesc:
           "Jamoatchilik Kengashining a'zolari (ishtirokchilari) Fond Nizomini, uning maqsadlarini tan oluvchi, Kengash faoliyatida faol ishtirok etuvchi, pul va mol-mulk badallarini ixtiyoriy ravishda to'lovchi mahalliy va xorijiy yuridik va jismoniy shaxslar bo'lishi mumkin.",
         membershipButton: "A'zolik uchun ariza berish",
+        membershipBenefitsTitle: "A'zolikning afzalliklari",
         membershipBenefits: [
           "Viloyatning nufuzli tadbirkorlar hamjamiyati tarkibida bo'lishdan faxrlanish hissi",
           "Ijtimoiy-iqtisodiy islohotlar va mintaqadagi ijobiy o'zgarishlarning ishtirokchisi bo'lish",

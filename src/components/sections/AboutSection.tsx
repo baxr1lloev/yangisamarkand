@@ -163,7 +163,15 @@ export default function AboutSection() {
             </p>
           </motion.div>
 
-          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+          <div className="lg:col-span-8">
+            {about.membershipBenefitsTitle && (
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
+                {about.membershipBenefitsTitle}
+              </h3>
+            )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
             {(about.membershipBenefits || []).map((benefit: string, idx: number) => {
               const benefitIcons = [
                 Award,
@@ -198,8 +206,10 @@ export default function AboutSection() {
                 </motion.article>
               );
             })}
-          </div>
+            </div>{/* end inner grid */}
+          </div>{/* end lg:col-span-8 */}
         </div>
+
 
         {/* Fee Structure Table */}
         {about.membershipFees && (
